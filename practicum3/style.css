@@ -35,6 +35,37 @@ table {
     border-spacing: 10px;
 }
 
+/* Chart */
+
+#chart {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: orange;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.chart div {
+   font: 10px sans-serif;
+   background-color: rgb(200, 130, 200);
+   /*background-color: magenta;*/
+   text-align: right;
+   padding: 3px;
+    margin: 1px;
+    color: white;
+  }
+
 
 /*Oud*/
 

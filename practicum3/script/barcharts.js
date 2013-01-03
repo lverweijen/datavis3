@@ -1,11 +1,14 @@
 function Barcharts(id, subjects) {
 
-    //subjects.forEach
-    var barchartElements = d3.select(id);
-    var barcharts = [];
+    var barchartElements = [];
 
     this.addChart = function(barchart) {
-        barchartElements.append("svg");
+        barchartElements.push(new Barchart(id));
     };
+
+    for(var i=0; i <= 3; i++) {
+        this.addChart();
+    }
+
 
 }
