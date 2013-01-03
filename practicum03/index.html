@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welness of different countries</title>
+        <meta charset="utf-8"/>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+
+        <script type="text/javascript" src="lib/jquery-1.8.3.js"></script>
+        <script type="text/javascript" src="lib/d3.v2.js"></script>
+
+        <script type="text/javascript" src="script/azimuthal.js"></script>
+        <script type="text/javascript" src="script/map.js"></script>
+        <script type="text/javascript" src="script/barcharts.js"></script>
+        <script type="text/javascript" src="script/graph.js"></script>
+    </head>
+
+    <body>
+        <h1>What is the safest country to live in?</h1>
+
+        <table>
+            <tr>
+                <td><div id="map" class="visualize"/></td>
+                <td><div id="globe" class="visualize"/></td>
+            </tr>
+            <tr>
+                <td><div id="barcharts" class="visualize"/></td>
+                <td><div id="graph" class="visualize"/></td>
+            </tr>
+        </table>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                    var map = new Map("#map");
+                    var azimuthal = new Azimuthal("#globe", 160, "ortographic");
+                    // var barcharts = new Barcharts("#barcharts");
+                    // var graph = new Graph("#graph");
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+/*Nieuw*/
+
+body {
+    background-color: black;
+    color: rgb(200, 200, 200);
+    /*color: white;*/
+}
+
+.visualize {
+    background-color: rgb(37, 37, 37);
+}
+
+.select1 {
+    fill: #17f93d;
+}
+
+.select2 {
+    fill: #e756d7;
+}
+
+.select3 {
+    fill: #5d7ac2;
+}
+
+path {
+    stroke: rgb(37, 37, 37);
+    fill: rgb(85, 85, 85);
+    position: absolute;
+    bottom: 0px;
+}
+
+table {
+    margin-left:auto;
+    margin-right:auto;
+    border-spacing: 10px;
+}
+
+
+/*Oud*/
+
+#countryName {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/*#body {*/
+  /*[>width: 640px;<]*/
+  /*[>height: 400px;<]*/
+  /*pointer-events: all;*/
+  /*[>color: blue;<]*/
+  /*[>fill: blue;<]*/
+  /*position: relative;*/
+  /*top: 00px;*/
+  /*left: 0px;*/
+/*}*/
+
+circle {
+  fill: #dbe4f0;
+  position: absolute;
+  bottom: 0px;
+}
+
+
+#chart {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: orange;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.chart div {
+   font: 10px sans-serif;
+   background-color: rgb(200, 130, 200);
+   /*background-color: magenta;*/
+   text-align: right;
+   padding: 3px;
+    margin: 1px;
+    color: white;
+  }
