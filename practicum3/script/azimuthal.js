@@ -29,7 +29,6 @@ function Azimuthal(id, projection, mode) {
     var m0, o0;
 
     this.mousedown = function () {
-        console.log("aaro");
         //this.m0 = [d3.event.pageX, d3.event.pageY];
         //this.o0 = this.projection.origin();
         m0 = [d3.event.pageX, d3.event.pageY];
@@ -45,8 +44,6 @@ function Azimuthal(id, projection, mode) {
             this.circle.origin(o1)
             refresh();
         }
-        else
-            console.log("no m0");
     }
 
     this.mouseup = function() {
