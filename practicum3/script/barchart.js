@@ -7,11 +7,13 @@ function Barchart(id, indicator, data) {
 
     var formatPercent = d3.format("04d");
 
-    var x = d3.scale.ordinal()
-        .rangeRoundBands([0, width], .1);
+    var x = d3.scale.linear()
+        .range([1960, 2012]);
+        //.rangeRoundBands([0, width], .1);
 
     var y = d3.scale.linear()
-        .range([height, 0]);
+        .range([0, 1]);
+        //.range([height, 0]);
 
     var xAxis = d3.svg.axis()
         .scale(x)
@@ -30,8 +32,8 @@ function Barchart(id, indicator, data) {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // A sliding container to hold the bars by birthyear.
-    var birthyears = svg.append("g")
-        .attr("class", "birthyears");
+    //var birthyears = svg.append("g")
+        //.attr("class", "birthyears");
 
     // A label for the current year.
     var title = svg.append("text")
@@ -52,6 +54,13 @@ function Barchart(id, indicator, data) {
         //x.domain(data.map(function(d) { return d.year; }));
         //y.domain([0, d3.max(data, function(d) { return d.count; })]);
 
+        //x.domain([1960, 2012])
+        //y.domain([0, 1])
+        
+        //x.domain(data.map(function(d) { return d; }));
+        //y.domain([0, d3.max(data, function(d) { return data[d]; })]);
+
+
         //svg.append("g")
         //.attr("class", "x axis")
         //.attr("transform", "translate(0," + height + ")")
@@ -71,27 +80,55 @@ function Barchart(id, indicator, data) {
         //.data(data)
         //.enter().append("rect")
         //.attr("class", "bar")
-        //.attr("x", function(d) { return x(d.year); })
-        //.attr("width", x.rangeBand())
-        //.attr("y", function(d) { return y(d.count); })
+        //.attr("x", function(d) { return x(d); })
+        //.attr("width", x.range())
+        //.attr("y", function(d) { return y(data[d]); })
         //.attr("height", function(d) { 
             //return height - y(d.count); 
         //});
     //});
 
 
-    this.selectCountry = function(country) {
+
+    this.selectCountry = function(selectId, country) {
         var countryData = data[country];
         window.countryData = countryData;
         console.log(countryData);
 
         // I just want a simple numeric array, bitch.
+        // Probabably because I have fucked up data
         var stats = [];
         for(year = 1960; year <= 2012; year++) {
-            stats[year] = +countryData[year];
+            stats[year] = +countryData["0"][year+""];
         }
 
         console.log(stats);
+
+        svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Frequency");
+
+    svg.selectAll(".bar")
+        .data(data)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d) { return x(d); })
+        .attr("width", x.range())
+        .attr("y", function(d) { return y(countryData[d]); })
+        .attr("height", function(d) { 
+            return height - y(d.count); 
+        });
 
     };
 
@@ -101,5 +138,5 @@ function Barchart(id, indicator, data) {
     };
 
     // Testing
-    this.selectCountry("United States");
+    this.selectCountry(0, "United States");
 }

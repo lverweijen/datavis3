@@ -30,7 +30,10 @@ d3.csv("data/simplified.csv", function(data) {
     window.data = d3.nest()
         .key(function(d) {return d["Indicator Name"]})
         .key(function(d) {return d["Country Name"]})
-        .rollup(function(v) { return v.map(function(d) { return d; }); })
+
+        //.rollup(function(v) { return v.map(function(d) { return d; }); })
+        // Misschien doe ik hier iets fout, maar het lijkt te werken.
+        .rollup(function(v) { return v[0]; })
         .map(data);
 });
 
