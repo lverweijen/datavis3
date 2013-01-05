@@ -99,7 +99,7 @@ function Barchart(id, indicator, data) {
         // Probabably because I have fucked up data
         var stats = [];
         for(year = 1960; year <= 2012; year++) {
-            stats[year] = +countryData["0"][year+""];
+            stats[year] = +countryData[year+""];
         }
 
         console.log(stats);
