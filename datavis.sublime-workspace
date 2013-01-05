@@ -1,0 +1,942 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ge",
+				"getThrottle()	double"
+			],
+			[
+				"getp",
+				"getPosition()	double *"
+			],
+			[
+				"Del",
+				"DeltaLongitude	double"
+			],
+			[
+				"De",
+				"DeltaLongitude	double"
+			],
+			[
+				"wa",
+				"waypoint	wayPoint *"
+			],
+			[
+				"wayp",
+				"waypoints	std::vector<wayPoint *>"
+			],
+			[
+				"read",
+				"reached	int"
+			],
+			[
+				"alig",
+				"alignOnGround()	void"
+			],
+			[
+				"Norma",
+				"normpdf(double x, double mean, double variance)	double"
+			],
+			[
+				"set",
+				"setRudder(double interpolation)	void"
+			],
+			[
+				"goal",
+				"goal_pitch	double"
+			],
+			[
+				"getP",
+				"getPosition()	double *"
+			],
+			[
+				"get",
+				"getPosition()	double *"
+			],
+			[
+				"nor",
+				"normalize(double *vector)	void"
+			],
+			[
+				"D",
+				"Drone	UAV *"
+			],
+			[
+				"corre",
+				"correctYawElivator(double max)	double"
+			],
+			[
+				"corr",
+				"correctYawElivator(double max)	double"
+			],
+			[
+				"core",
+				"correctYaw()	double"
+			],
+			[
+				"norm",
+				"normpdf(double x, double mean, double variance)	double"
+			],
+			[
+				"rec",
+				"recieved_time_interval	double"
+			],
+			[
+				"curre",
+				"current_output	float *"
+			],
+			[
+				"expo",
+				"exploring	int"
+			],
+			[
+				"expl",
+				"exploring	int"
+			],
+			[
+				"curr",
+				"current_output	float *"
+			],
+			[
+				"tare",
+				"target_yaw	double"
+			],
+			[
+				"target",
+				"target_roll	double"
+			],
+			[
+				"targe",
+				"target_yaw	double"
+			],
+			[
+				"targ",
+				"target	double **"
+			],
+			[
+				"tar",
+				"target_pitch	double"
+			],
+			[
+				"getDelt",
+				"getDeltaRollError(int i)	double"
+			],
+			[
+				"getDet",
+				"getDeltaDeltaPitchError"
+			],
+			[
+				"getPitch",
+				"getPitchError(int i)	double"
+			],
+			[
+				"getPi",
+				"getPitchError(int i)	double"
+			],
+			[
+				"delt",
+				"delta_pitch_error	double"
+			],
+			[
+				"delta",
+				"delta_roll_error	double"
+			],
+			[
+				"pre",
+				"previous_output	float *"
+			],
+			[
+				"output",
+				"previous_output	float *"
+			],
+			[
+				"pr",
+				"previous_output	float *"
+			],
+			[
+				"prev",
+				"previous_output	float *"
+			],
+			[
+				"g",
+				"getPitch()	double"
+			],
+			[
+				"current",
+				"current_input	float *"
+			],
+			[
+				"setState",
+				"setState(double pitch, double yaw, double roll, double lat, double lon)	void"
+			],
+			[
+				"FANN_SIG",
+				"FANN_SIGMOID_SYMMETRIC	fann_activationfunc_enum"
+			],
+			[
+				"sign",
+				"signgam	int"
+			],
+			[
+				"FANN_TRAIN_",
+				"FANN_TRAIN_RPROP	fann_train_enum"
+			],
+			[
+				"le",
+				"learning_momentum	float"
+			],
+			[
+				"cur",
+				"current_error	double"
+			],
+			[
+				"lea",
+				"learning_rate	float"
+			],
+			[
+				"fann_train_on_",
+				"fann_train_epoch(struct fann *ann, struct fann_train_data *data)	float"
+			],
+			[
+				"fann_train",
+				"fann_train_data	struct"
+			],
+			[
+				"max",
+				"maximum_angle_of_attack	double"
+			],
+			[
+				"vect",
+				"vector2	double *"
+			],
+			[
+				"vec",
+				"vector2	double *"
+			],
+			[
+				"len",
+				"length(double *vector)	double"
+			],
+			[
+				"leng",
+				"length2d(double vx, double vy)	double"
+			],
+			[
+				"norma",
+				"normalize2d(double *vx, double *vy)	void"
+			],
+			[
+				"pow",
+				"pow(double __x, double __y)	double"
+			],
+			[
+				"roll",
+				"getRoll()	double"
+			],
+			[
+				"getMa",
+				"getMagnetometer_z()	double"
+			],
+			[
+				"getGyr",
+				"getGyroscope_roll()	double"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/User/myC++.sublime-build",
+	"command_palette":
+	{
+		"height": 390.0,
+		"selected_items":
+		[
+			[
+				"tab",
+				"View: Toggle Tabs"
+			],
+			[
+				"tabs",
+				"View: Toggle Tabs"
+			],
+			[
+				"togle",
+				"View: Toggle Side Bar"
+			],
+			[
+				"show",
+				"Show TODOs: Project and open files"
+			],
+			[
+				"sho",
+				"Show TODOs: Project and open files"
+			],
+			[
+				"remv",
+				"Package Control: Remove Package"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"todo",
+				"Todo: Add"
+			],
+			[
+				"tod",
+				"Todo: List Active"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"util",
+				"Preferences: SublimeClang Settings – Default"
+			],
+			[
+				"snippe",
+				"Snippet: #ifndef … #define … #endif"
+			],
+			[
+				"clang",
+				"Preferences: SublimeClang Settings – Default"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"stat",
+				"View: Toggle Status Bar"
+			],
+			[
+				"key",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"def",
+				"Preferences: Settings - Default"
+			],
+			[
+				"user",
+				"Preferences: Settings - User"
+			],
+			[
+				"default",
+				"Preferences: Settings - Default"
+			],
+			[
+				"defa",
+				"Preferences: Settings - Default"
+			],
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"package ins",
+				"Package Control: Install Package"
+			],
+			[
+				":w",
+				":w - Save"
+			],
+			[
+				"side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"make",
+				"Set Syntax: Makefile"
+			],
+			[
+				"defaut",
+				"Preferences: Settings - Default"
+			],
+			[
+				":buil",
+				"Build: Build"
+			],
+			[
+				":bui",
+				"Build: Build"
+			],
+			[
+				":e",
+				":$ - EOF"
+			],
+			[
+				"uav",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				":q",
+				"Set Syntax: SQL"
+			],
+			[
+				"defau",
+				"Preferences: Settings - Default"
+			],
+			[
+				"keyb",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"sid	",
+				"View: Toggle Side Bar"
+			],
+			[
+				"folder",
+				"Project: Add Folder"
+			],
+			[
+				"UAV",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"",
+				"About"
+			],
+			[
+				"togle mi",
+				"View: Toggle Minimap"
+			],
+			[
+				"toggle ta",
+				"View: Toggle Tabs"
+			],
+			[
+				"main",
+				"Snippet: main()"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/tux/development/DRONE PROJECT/FGI.cpp",
+		"/home/tux/development/DRONE PROJECT/UAVP.h",
+		"/home/tux/development/DRONE PROJECT/UTIL.h",
+		"/home/tux/development/DRONE PROJECT/debug.cpp",
+		"/home/tux/development/DRONE PROJECT/UTIL.cpp",
+		"/home/tux/development/DRONE PROJECT/UAVP.cpp",
+		"/home/tux/.config/sublime-text-2/Packages/SublimeClang/SublimeClang.sublime-settings",
+		"/home/tux/development/DRONE PROJECT/test.h",
+		"/home/tux/development/DRONE PROJECT/project.sublime-workspace",
+		"/home/tux/development/DRONE PROJECT/doc/xor_test.c",
+		"/home/tux/development/DRONE PROJECT/doc/xor_train.c",
+		"/home/tux/development/DRONE PROJECT/UAV.h",
+		"/home/tux/development/DRONE PROJECT/UAV.cpp",
+		"/home/tux/development/DRONE PROJECT/Makefile",
+		"/home/tux/development/DRONE PROJECT/UAVI.cpp",
+		"/home/tux/development/DRONE PROJECT/FlightGearInterface.cpp",
+		"/home/tux/development/DRONE PROJECT/Drone.cpp",
+		"/home/tux/development/DRONE PROJECT/Autopilot.cpp",
+		"/home/tux/development/DRONE PROJECT/Drone.h",
+		"/home/tux/development/DRONE PROJECT/FlightGearInterface.h",
+		"/home/tux/development/DRONE PROJECT/Autopilot.h",
+		"/home/tux/development/DRONE PROJECT/FGI.h",
+		"/home/tux/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
+		"/home/tux/development/DRONE PROJECT/project.sublime-project",
+		"/home/tux/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/tux/development/DRONE PROJECT/build_conf.sublime-build",
+		"/home/tux/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/tux/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/home/tux/development/DRONE PROJECT/system.png",
+		"/home/tux/development/DRONE PROJECT/UAVI.h",
+		"/home/tux/development/DRONE PROJECT/run/tree.sh",
+		"/home/tux/.config/sublime-text-2/Packages/User/myBuild.sublime-build",
+		"/home/tux/development/DRONE PROJECT/run/runfg.sh"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"aileron",
+			"Aileron",
+			"Autopilot",
+			"D",
+			"UAV",
+			"Drone",
+			"UAV",
+			"\n	instruments = new Instruments();\n	state0 = new State();\n	state1 = new State();\n	state2 = new State();",
+			"UAV",
+			"fgi",
+			"FGI",
+			"UAVP",
+			"UAVI",
+			"0",
+			"tar",
+			"position",
+			"target",
+			"globals",
+			"target",
+			"tmp",
+			"orientation",
+			"double",
+			"45",
+			";\n",
+			"millis",
+			"ctrl+shift+v",
+			"previous_output",
+			"glPopMatrix",
+			"glPopMatrix()",
+			"Roll",
+			"Yaw",
+			"0",
+			"make",
+			"target",
+			"Target",
+			"target",
+			"Target",
+			"target",
+			"Target",
+			"target",
+			"target_pitch",
+			"target",
+			"new_ori",
+			"getDeltaRollError",
+			"getDeltaPitchError",
+			"getRollError",
+			"getYawError",
+			"getPitchError",
+			"getYawError",
+			"getPitchError",
+			"}\n",
+			"Pitch",
+			"0",
+			"Yaw",
+			"Pitch",
+			"3",
+			"0",
+			"1",
+			"4",
+			"yaw_error",
+			"4",
+			"current_input",
+			"D->getState(0)",
+			"	\n",
+			"18",
+			"getState(0)",
+			"ori",
+			"()",
+			"fgi->",
+			"rMatrix",
+			",",
+			"D->getOrientation()",
+			"0",
+			"ori",
+			"0",
+			"D->getOrientation()",
+			"bank",
+			"DEG_TO_RAD",
+			"refreshInternals",
+			"1",
+			"0",
+			"native",
+			"attack_factor",
+			"new_ori",
+			"ori_c",
+			"ori_a",
+			"ori",
+			"orientation",
+			"float",
+			"1",
+			"0",
+			"1",
+			"0",
+			"float",
+			"1",
+			"cout"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"refreshInternals"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.clang":
+	{
+		"height": 62.0
+	},
+	"output.exec":
+	{
+		"height": 107.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"aut",
+				"Autopilot.cpp"
+			],
+			[
+				"uti",
+				"UTIL.cpp"
+			],
+			[
+				"util",
+				"UTIL.h"
+			],
+			[
+				"auto",
+				"Autopilot.h"
+			],
+			[
+				"au",
+				"Autopilot.cpp"
+			],
+			[
+				"debug",
+				"debug.cpp"
+			],
+			[
+				"fgi",
+				"FlightGearInterface.cpp"
+			],
+			[
+				"debu",
+				"debug.cpp"
+			],
+			[
+				"drone",
+				"Drone.cpp"
+			],
+			[
+				"autopi",
+				"Autopilot.h"
+			],
+			[
+				"debg",
+				"debug.cpp"
+			],
+			[
+				"deb",
+				"debug.cpp"
+			],
+			[
+				"a",
+				"Autopilot.h"
+			],
+			[
+				"f",
+				"FlightGearInterface.cpp"
+			],
+			[
+				"fig",
+				"FlightGearInterface.cpp"
+			],
+			[
+				"",
+				"Autopilot.cpp"
+			],
+			[
+				"auth",
+				"Autopilot.h"
+			],
+			[
+				"fl",
+				"FlightGearInterface.h"
+			],
+			[
+				"dr",
+				"Drone.h"
+			],
+			[
+				"d",
+				"doc/xor_test.c"
+			],
+			[
+				"flig",
+				"FlightGearInterface.cpp"
+			],
+			[
+				"fligh",
+				"FlightGearInterface.h"
+			],
+			[
+				"flight",
+				"FlightGearInterface.h"
+			],
+			[
+				"fli",
+				"FlightGearInterface.cpp"
+			],
+			[
+				"uav",
+				"UAV.h"
+			],
+			[
+				"uavp",
+				"UAVP.cpp"
+			],
+			[
+				"fgicp",
+				"FGI.cpp"
+			],
+			[
+				"uavi",
+				"UAVI.cpp"
+			],
+			[
+				"uavh",
+				"UAV.h"
+			],
+			[
+				"make",
+				"Makefile"
+			],
+			[
+				"uavph",
+				"UAVP.h"
+			],
+			[
+				"uac",
+				"UAV.cpp"
+			],
+			[
+				"uap",
+				"UAVP.h"
+			],
+			[
+				"uacp",
+				"UAVP.cpp"
+			],
+			[
+				"uavcpp",
+				"UAV.cpp"
+			],
+			[
+				"uavc",
+				"UAV.cpp"
+			],
+			[
+				"utilh",
+				"UTIL.h"
+			],
+			[
+				"ut",
+				"UTIL.h"
+			],
+			[
+				"util.cpp",
+				"UTIL.cpp"
+			],
+			[
+				"uavpc",
+				"UAVP.cpp"
+			],
+			[
+				"uav.cpp",
+				"UAV.cpp"
+			],
+			[
+				"uav.c",
+				"UAV.cpp"
+			],
+			[
+				"utilc",
+				"UTIL.cpp"
+			],
+			[
+				"fgi.c",
+				"FGI.cpp"
+			],
+			[
+				"utile",
+				"untitled"
+			],
+			[
+				"uav.",
+				"UAV.h"
+			],
+			[
+				"de",
+				"debug.cpp"
+			],
+			[
+				"fg",
+				"FGI.cpp"
+			],
+			[
+				"x",
+				"doc/xor_test.c"
+			],
+			[
+				"xor",
+				"doc/xor_train.c"
+			],
+			[
+				"xo",
+				"doc/xor_test.c"
+			],
+			[
+				"pro",
+				"project.sublime-workspace"
+			],
+			[
+				"utl",
+				"UTIL.h"
+			],
+			[
+				"ua",
+				"UAVP.cpp"
+			],
+			[
+				"pr",
+				"project.sublime-project"
+			],
+			[
+				"buil",
+				"/home/tux/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap"
+			],
+			[
+				"proje",
+				"project.sublime-project"
+			],
+			[
+				"fgh",
+				"FGI.h"
+			],
+			[
+				"uav.h",
+				"UAV.h"
+			],
+			[
+				"deu",
+				"debug.cpp"
+			],
+			[
+				"uav.cp",
+				"UAV.cpp"
+			],
+			[
+				"util.h",
+				"UTIL.h"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": false,
+	"side_bar_visible": false,
+	"side_bar_width": 280.0,
+	"status_bar_visible": true
+}
