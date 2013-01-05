@@ -21,6 +21,21 @@ function Barchart(id, indicator, data) {
     var layer;
     var svg = d3.select("#barcharts").append("svg")
 
+    var selectedCountries = [];
+    var styles = new Object();
+
+    this.selectCountry = function(country, cssclass) {
+        // FIXME cssclass wordt genegeerd
+        selectedCountries.push(country);
+        styles[country] = cssclass;
+        updateCountries(selectedCountries);
+    };
+
+    this.deselectCountry = function(country) {
+        selectedCountries.pop(selectedCountries.indexOf(country))
+        updateCountries(selectedCountries);
+    };
+
     function updateCountries(newcountries) {
         // Sommige delen van deze functie kunnen misschien ook hierboven gedeclareerd worden.
         // Ik weet alleen niet welke.
@@ -50,6 +65,11 @@ function Barchart(id, indicator, data) {
         var color = d3.scale.linear()
             .domain([0, n - 1])
             .range(["#aad", "#556"]);
+
+        // TODO gebruik dit als cssClass werkt
+        //var color = function(domain) {
+            //return styles[selectedCountries[domain]];
+        //}
 
         var xAxis = d3.svg.axis()
             .scale(x)
@@ -87,7 +107,8 @@ function Barchart(id, indicator, data) {
             .call(xAxis);
     }
 
-    updateCountries(["United States"]);
-    updateCountries(["United States", "United Kingdom"]);
-    updateCountries(["United Kingdom"]);
+    //updateCountries(["United States"]);
+    //updateCountries(["United States", "United Kingdom"]);
+    updateCountries(["United States", "United Kingdom", "Italy"]);
+    //updateCountries(["United Kingdom"]);
 };

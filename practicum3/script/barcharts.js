@@ -13,4 +13,16 @@ function Barcharts(id, subjects) {
         console.log(indicator);
         this.addChart(indicator);
     }
+
+    this.selectCountry = function(countryName, countryCss) {
+        this.barchartElements.forEach(function(chart) {
+            chart.selectCountry(countryName, countryCss);
+        })
+    }
+
+    this.deselectCountry = function(countryName) {
+        this.barchartElements.forEach(function(chart) {
+            chart.deselectCountry(countryName);
+        })
+    }
 }
