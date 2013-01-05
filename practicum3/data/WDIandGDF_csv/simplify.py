@@ -5,7 +5,7 @@ indicators = {
         "GDP (current US$)"
 }
 
-with open("WDI_GDF_Data.csv", "rb") as file_in:
+with open("../WDI_GDF_Data.csv", "rb") as file_in:
     csv_reader = csv.reader(file_in)
     header = csv_reader.next()
     code = header.index("Indicator Name")
