@@ -31,11 +31,63 @@ function Azimuthal(id, projection, mode) {
         {
             return "rgb(0,0,0)";
         })        
-        .attr("d", clip);
+        .attr("d", clip)
+        .on("click",setSelection)
+        .on("mouseover", selectLand)
+        .on("mouseout" , deselectLand);
 
     feature.append("svg:title")
         .text(function(d) { return d.properties.name; });
     });
+
+    this.loadMap = function(data)
+    {
+        var list = svg.selectAll("path")[0];
+        
+        var min =  9999;
+        var max = -9999;
+
+        list.forEach(function(i)
+        {
+            var value = data[$(i).attr("n")];
+            if(value>max && !isNaN(value))
+                max=value;
+            if(value<min && !isNaN(value))
+                min=value;
+        });
+
+        list.forEach(function(i)
+        {
+            $(i).attr("style",function(d,index,rr){
+                var value = data[$(i).attr("n")];
+                var color = gradient(0.35,0,1,min,max,value);
+                return "fill: " + color + ";stroke: rgb(0,0,0)";
+            });
+        });
+    }
+
+    function setSelection()
+    {
+        var selection = d3.select(this);
+        console.log(selection.attr("n"));
+        selected_country = selection.attr("n");
+    }
+
+    function selectLand()
+    {
+      //Set Color
+      var selection = d3.select(this);
+      selection.attr("oldcolor",selection.style("fill"));
+      selection.style("fill","green");
+    }
+
+    function deselectLand()
+    {
+      //Set Color
+      var selection = d3.select(this);
+      var tmp = selection.attr("name");
+      selection.style("fill",selection.attr("oldcolor"));
+    }
 
     var m0, o0;
 

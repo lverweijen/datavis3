@@ -70,7 +70,6 @@ function Map(id) {
             });
         });
     }
-    this.loadMap();
 
     function click(d) {
       var x = 0,
