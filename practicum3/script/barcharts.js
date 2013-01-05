@@ -25,4 +25,7 @@ function Barcharts(id, subjects) {
             chart.deselectCountry(countryName);
         }.bind(this))
     }
+
+    this.selectCountry("Italy", null);
+    this.selectCountry("United Kingdom", null);
 }

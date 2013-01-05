@@ -29,6 +29,8 @@ function Barchart(id, indicator, data) {
         selectedCountries.push(country);
         styles[country] = cssclass;
         updateCountries(selectedCountries);
+        console.log(selectedCountries );
+        console.log(country + "toegevoegd");
     };
 
     this.deselectCountry = function(country) {
@@ -110,6 +112,6 @@ function Barchart(id, indicator, data) {
 
     //updateCountries(["United States"]);
     //updateCountries(["United States", "United Kingdom"]);
-    updateCountries(["United States", "United Kingdom", "Italy"]);
+    //updateCountries(["United States", "United Kingdom", "Italy"]);
     //updateCountries(["United Kingdom"]);
 };
