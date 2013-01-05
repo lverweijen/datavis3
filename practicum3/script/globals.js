@@ -1,5 +1,5 @@
 var year = 2008;
-var life_expectancy_data = [];
+var life_expectancy_data = [[]];
 
 function updateSlider(value)
 {
@@ -13,11 +13,17 @@ function updateSlider(value)
 	{
 		csv.forEach(function(row)
 		{
-			console.log(row);	
-			life_expectancy_data[row["Country Name"]] = row["2008"];
+			// console.log(row);	
+			life_expectancy_data[row["Country Name"]] = row[""+year];
 		});
 	});
-
-	console.log(life_expectancy_data);
 }
 
+function gradient(red, green, blue, min, max, data)
+{
+	var constant = min*(max-min)*data;
+	r = red*constant;
+	g = green*constant;
+	b = blue*constant;
+    return "rgb("+r+","+g+","+b+")";
+}
