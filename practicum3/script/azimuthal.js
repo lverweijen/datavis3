@@ -4,7 +4,7 @@ function Azimuthal(id, projection, mode) {
 
     this.projection = d3.geo.azimuthal()
         .mode(mode || "orthographic")
-        .scale(projection || 380);
+        .scale(projection || 400);
 
     this.circle = d3.geo.greatCircle()
         .origin(this.projection.origin());
@@ -13,13 +13,24 @@ function Azimuthal(id, projection, mode) {
         .projection(this.projection);
 
     var svg = d3.select(id).append("svg:svg")
-        .attr("width", 640)
+        .attr("width", 800)
         .attr("height", 400);
 
     d3.json("data/world-countries.json", function(collection) {
         feature = svg.selectAll("path")
         .data(collection.features)
         .enter().append("svg:path")
+        .attr("n",function(d,i){
+            return collection.features[i].properties.name;
+        })
+        .style("fill",function(d,i)
+        {
+            return "rgb(40,40,40)";
+        })
+        .style("stroke",function(d,i)
+        {
+            return "rgb(0,0,0)";
+        })        
         .attr("d", clip);
 
     feature.append("svg:title")

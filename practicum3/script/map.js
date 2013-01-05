@@ -1,7 +1,7 @@
 // Zo maak je een class in javascript
 function Map(id) {
     var width = 800,
-        height = 600,
+        height = 400,
         centered;
 
     var projection = d3.geo.equirectangular()
@@ -35,8 +35,12 @@ function Map(id) {
         })
         .style("fill",function(d,i)
         {
-            return "gray";
+            return "rgb(40,40,40)";
         })
+        .style("stroke",function(d,i)
+        {
+            return "rgb(0,0,0)";
+        })     
           .attr("d", path)
           .on("click", click);
     });
@@ -44,13 +48,25 @@ function Map(id) {
     this.loadMap = function(data)
     {
         var list = g.selectAll("path")[0];
+        
+        var min =  9999;
+        var max = -9999;
+
+        list.forEach(function(i)
+        {
+            var value = data[$(i).attr("n")];
+            if(value>max && !isNaN(value))
+                max=value;
+            if(value<min && !isNaN(value))
+                min=value;
+        });
+
         list.forEach(function(i)
         {
             $(i).attr("style",function(d,index,rr){
-                var expectancy = life_expectancy_data[$(i).attr("n")];
-                console.log(expectancy);
-                var color = gradient(1,0.35,0,40,90,expectancy);
-                return "fill: " + color;
+                var value = data[$(i).attr("n")];
+                var color = gradient(1,0.35,0,min,max,value);
+                return "fill: " + color + ";stroke: rgb(0,0,0)";
             });
         });
     }
