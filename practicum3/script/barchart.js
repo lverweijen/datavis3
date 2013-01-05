@@ -1,174 +1,93 @@
+console.log("Hiero");
+
 function Barchart(id, indicator, data) {
 
-    var margin = {top: 20, right: 40, bottom: 30, left: 20},
-        width = 300 - margin.left - margin.right,
-        height = 150 - margin.top - margin.bottom;
+    function countries(countries) {
+        var stack = d3.layout.stack(),
+        layers = stack(countries.map(function(country){
+            var countryData = data[country];
 
-    var formatPercent = d3.format("04d");
+            var paired = [];
+            for (var year = 1960; year <= 2012; year++) {
+                paired.push({x: year, y: isNaN(countryData[year]) ? 0 : +countryData[year]});
+            }
 
-    var x = d3.scale.ordinal()
-        .rangeRoundBands([0, width], .1);
+            return paired;
 
-    var y = d3.scale.linear()
-        .range([height, 0]);
+        }));
+        return layers;
+    }
 
-    var xAxis = d3.svg.axis()
-        .scale(x)
-        .orient("bottom");
+    var layer;
+    var svg = d3.select("#barcharts").append("svg")
 
-    var yAxis = d3.svg.axis()
-        .scale(y)
-        .orient("left")
-        .tickFormat(formatPercent);
+    function updateCountries(newcountries) {
+        // Sommige delen van deze functie kunnen misschien ook hierboven gedeclareerd worden.
+        // Ik weet alleen niet welke.
 
-    // An SVG element with a bottom-right origin.
-    var svg = d3.select(id).append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        if (layer)
+            layer.data([]).exit().remove();
 
-    // A label for the current year.
-    var title = svg.append("text")
-        .attr("class", "title")
-        .attr("dy", ".71em")
-        .text(indicator);
-
-    this.selectCountry = function(selectId, country) {
-        var countryData = data[country];
-
-        // I just want a simple numeric array, bitch.
-        var years = d3.range(1960, 2012 + 1);
-
-        years.forEach(function(year) {
-            countryData[year] = +countryData[year+""];
-        })
+        var n = 4, // number of layers
+            m = 58, // number of samples per layer
+            layers = countries(newcountries);
+            yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y; }); }),
+            yStackMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); });
 
 
-        //window.x = x;
-        //window.y = y;
-        
-        x.domain(years);
-        //y.domain([0, d3.max(countryData, function(d) { return countryData[d]; })]);
-        //y.domain([0, 100]);
-        //y.domain(years.map(function(year){return countryData[year];}))
-        y.domain([0, d3.max(years, function(d) { return countryData[d]; })]);
-        //console.log(y.domain);
+        var margin = {top: 40, right: 10, bottom: 20, left: 10},
+            width = 300 - margin.left - margin.right,
+            height = 150 - margin.top - margin.bottom;
+
+        var x = d3.scale.ordinal()
+            .domain(d3.range(m))
+            .rangeRoundBands([0, width], .08);
+
+        var y = d3.scale.linear()
+            .domain([0, yStackMax])
+            .range([height, 0]);
+
+        var color = d3.scale.linear()
+            .domain([0, n - 1])
+            .range(["#aad", "#556"]);
+
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .tickSize(0)
+            .tickPadding(6)
+            .orient("bottom");
+
+        svg.attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        layer = svg.selectAll(".layer")
+            .data(layers)
+          .enter().append("g")
+            .attr("class", "layer")
+            .style("fill", function(d, i) { return color(i); });
+
+        var rect = layer.selectAll("rect")
+            .data(function(d) { return d; })
+          .enter().append("rect")
+            .attr("x", function(d) { return x(d.x); })
+            .attr("y", height)
+            .attr("width", x.rangeBand())
+            .attr("height", 0);
+
+        rect.transition()
+            .delay(function(d, i) { return i * 10; })
+            .attr("y", function(d) { return y(d.y0 + d.y); })
+            .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); });
 
         svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
-            .attr("opacity", .333)
             .call(xAxis);
+    }
 
-        svg.append("g")
-            .attr("class", "y axis")
-            .call(yAxis)
-            .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
-            .attr("dy", ".71em")
-            .attr("opacity", .333)
-            .style("text-anchor", "end");
-            //.text("Frequency");
-
-        svg.selectAll(".bar")
-            //.data(countryData)
-            .data(years)
-            .enter().append("rect")
-            .attr("class", "bar")
-            .attr("x", function(d) { return x(d); })
-            .attr("width", x.rangeBand())
-            .attr("y", function(d) { return y(countryData[d]); })
-            .attr("opacity", .333)
-            .attr("height", function(d) { 
-                return height - y(countryData[d]); 
-            });
-
-    };
-
-    this.deselectCountry = function(country) {
-
-    };
-
-    // Testing
-    this.selectCountry(0, "United Kingdom");
-    //this.selectCountry(0, "United States");
-    //svg.transition().duration(0);
-
-    // Nu gaan proberen united states er overheen te tekenen
-    // als dit lukt, kan ik waarschijnlijk dingen weghalen en tevoorschijn naar wens
-        var countryData = data["United States"];
-
-        var years = d3.range(1960, 2012 + 1);
-
-        years.forEach(function(year) {
-            countryData[year] = +countryData[year+""];
-        });
-
-        var bar = svg.selectAll(".bar")
-            .data(years.concat(years))
-            .enter().append("rect")
-            .attr("class", "bar")
-            .attr("x", function(d) { return x(d); })
-            .attr("width", x.rangeBand())
-            .attr("y", function(d) { return y(countryData[d]); })
-            .attr("opacity", .5)
-            .style("fill", "blue") // ANDER KLEURTJE
-            //.css("color", "DDDDDD")
-            .attr("height", function(d) { 
-                return height - y(countryData[d]); 
-            });
-
-        years.forEach(function(year) {
-            bar.push(year);
-        });
-}
-
-//
-    // Liever wil je de data precies 1 keer inlezen
-    // Misschien moet data ingelezen worden in barcharts.js
-    //d3.tsv("data/removal.tsv", function(data) {
-        //data.forEach(function(d) {
-            //d.count = +d.count;
-        //});
-
-        //x.domain(data.map(function(d) { return d.year; }));
-        //y.domain([0, d3.max(data, function(d) { return d.count; })]);
-
-        //x.domain([1960, 2012])
-        //y.domain([0, 1])
-        
-        //x.domain(data.map(function(d) { return d; }));
-        //y.domain([0, d3.max(data, function(d) { return data[d]; })]);
-
-
-        //svg.append("g")
-        //.attr("class", "x axis")
-        //.attr("transform", "translate(0," + height + ")")
-        //.call(xAxis);
-
-    //svg.append("g")
-        //.attr("class", "y axis")
-        //.call(yAxis)
-        //.append("text")
-        //.attr("transform", "rotate(-90)")
-        //.attr("y", 6)
-        //.attr("dy", ".71em")
-        //.style("text-anchor", "end")
-        //.text("Frequency");
-
-    //svg.selectAll(".bar")
-        //.data(data)
-        //.enter().append("rect")
-        //.attr("class", "bar")
-        //.attr("x", function(d) { return x(d); })
-        //.attr("width", x.range())
-        //.attr("y", function(d) { return y(data[d]); })
-        //.attr("height", function(d) { 
-            //return height - y(d.count); 
-        //});
-    //});
-
-
-
+    updateCountries(["United States"]);
+    updateCountries(["United States", "United Kingdom"]);
+    updateCountries(["United Kingdom"]);
+};
