@@ -1,7 +1,5 @@
 function Barchart(id, indicator, data) {
 
-    console.log("daar");
-
     var margin = {top: 20, right: 40, bottom: 30, left: 20},
         width = 300 - margin.left - margin.right,
         height = 150 - margin.top - margin.bottom;
