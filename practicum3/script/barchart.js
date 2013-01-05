@@ -28,19 +28,72 @@ function Barchart(id, indicator, data) {
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    // A sliding container to hold the bars by birthyear.
-    //var birthyears = svg.append("g")
-        //.attr("class", "birthyears");
-
     // A label for the current year.
     var title = svg.append("text")
         .attr("class", "title")
         .attr("dy", ".71em")
         .text(indicator);
 
-    // TODO: 1960 tot 1012
+    this.selectCountry = function(selectId, country) {
+        var countryData = data[country];
 
-    // TODO data die we willen hebben inlezen
+        // I just want a simple numeric array, bitch.
+        var years = [];
+        for(year = 1960; year <= 2012; year++) {
+            countryData[year] = +countryData[year+""];
+            years.push(year);
+        }
+
+        //window.x = x;
+        //window.y = y;
+        
+        x.domain(years);
+        //y.domain([0, d3.max(countryData, function(d) { return countryData[d]; })]);
+        //y.domain([0, 100]);
+        //y.domain(years.map(function(year){return countryData[year];}))
+        y.domain([0, d3.max(years, function(d) { return countryData[d]; })]);
+        //console.log(y.domain);
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            //.text("Frequency");
+
+            svg.selectAll(".bar")
+            //.data(countryData)
+            .data(years)
+            .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return x(d); })
+            .attr("width", x.rangeBand())
+            .attr("y", function(d) { return y(countryData[d]); })
+            .attr("opacity", .333)
+            .attr("height", function(d) { 
+                return height - y(countryData[d]); 
+            });
+
+    };
+
+    this.deselectCountry = function(country) {
+
+    };
+
+    // Testing
+    this.selectCountry(0, "United States");
+    this.selectCountry(0, "United Kingdom");
+}
+
+//
     // Liever wil je de data precies 1 keer inlezen
     // Misschien moet data ingelezen worden in barcharts.js
     //d3.tsv("data/removal.tsv", function(data) {
@@ -87,64 +140,3 @@ function Barchart(id, indicator, data) {
 
 
 
-    this.selectCountry = function(selectId, country) {
-        var countryData = data[country];
-
-        // I just want a simple numeric array, bitch.
-        var years = [];
-        for(year = 1960; year <= 2012; year++) {
-            countryData[year] = +countryData[year+""];
-            years.push(year);
-        }
-
-        window.x = x;
-        window.y = y;
-        
-        x.domain(years);
-        //y.domain([0, d3.max(countryData, function(d) { return countryData[d]; })]);
-        //y.domain([0, 100]);
-        //y.domain(years.map(function(year){return countryData[year];}))
-        y.domain([0, d3.max(years, function(d) { return countryData[d]; })]);
-        //console.log(y.domain);
-
-        svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
-
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-        .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        //.text("Frequency");
-
-    svg.selectAll(".bar")
-        //.data(countryData)
-        .data(years)
-        .enter().append("rect")
-        .attr("class", "bar")
-        .attr("x", function(d) { return x(d); })
-        .attr("width", x.rangeBand())
-        .attr("y", function(d) { return y(countryData[d]); })
-        .attr("height", function(d) { 
-            //console.log(d);
-            //console.log("b");
-            //c
-            return height - y(countryData[d]); 
-            //return height - y(countryData[d]); 
-        });
-    //console.log("helo");
-
-    };
-
-    this.deselectCountry = function(country) {
-
-    };
-
-    // Testing
-    this.selectCountry(0, "United States");
-}
