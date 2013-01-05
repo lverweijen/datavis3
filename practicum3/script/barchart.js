@@ -44,47 +44,59 @@ function Barchart(id, indicator, data) {
     // TODO data die we willen hebben inlezen
     // Liever wil je de data precies 1 keer inlezen
     // Misschien moet data ingelezen worden in barcharts.js
-    d3.tsv("data/removal.tsv", function(data) {
-        data.forEach(function(d) {
-            d.count = +d.count;
-        });
+    //d3.tsv("data/removal.tsv", function(data) {
+        //data.forEach(function(d) {
+            //d.count = +d.count;
+        //});
 
-        x.domain(data.map(function(d) { return d.year; }));
-        y.domain([0, d3.max(data, function(d) { return d.count; })]);
+        //x.domain(data.map(function(d) { return d.year; }));
+        //y.domain([0, d3.max(data, function(d) { return d.count; })]);
 
-        svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        //svg.append("g")
+        //.attr("class", "x axis")
+        //.attr("transform", "translate(0," + height + ")")
+        //.call(xAxis);
 
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-        .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("Frequency");
+    //svg.append("g")
+        //.attr("class", "y axis")
+        //.call(yAxis)
+        //.append("text")
+        //.attr("transform", "rotate(-90)")
+        //.attr("y", 6)
+        //.attr("dy", ".71em")
+        //.style("text-anchor", "end")
+        //.text("Frequency");
 
-    svg.selectAll(".bar")
-        .data(data)
-        .enter().append("rect")
-        .attr("class", "bar")
-        .attr("x", function(d) { return x(d.year); })
-        .attr("width", x.rangeBand())
-        .attr("y", function(d) { return y(d.count); })
-        .attr("height", function(d) { 
-            return height - y(d.count); 
-        });
-    });
+    //svg.selectAll(".bar")
+        //.data(data)
+        //.enter().append("rect")
+        //.attr("class", "bar")
+        //.attr("x", function(d) { return x(d.year); })
+        //.attr("width", x.rangeBand())
+        //.attr("y", function(d) { return y(d.count); })
+        //.attr("height", function(d) { 
+            //return height - y(d.count); 
+        //});
+    //});
 
 
     this.selectCountry = function(country) {
+        var countryData = data[country];
+        window.countryData = countryData;
+        console.log(countryData);
+
+        // I just want a simple numeric array, bitch.
+        var stats = [];
+        for(year = 1960; year <= 2012; year++) {
+            stats[year] = +countryData[year];
+        }
+
+        console.log(stats);
 
     };
 
     this.deselectCountry = function(country) {
+        data.f
 
     };
 

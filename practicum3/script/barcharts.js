@@ -1,18 +1,22 @@
 function Barcharts(id, subjects) {
 
-    var nested;
-    var barchartElements = [];
+    this.nested;
+    this.barchartElements = [];
 
-    d3.csv("data/WDIandGDF_csv/simplified.csv", function(data) {
-        nested = d3.nest()
+    this.addChart = function(indicator) {
+            this.barchartElements.push(new Barchart(id, indicator, this.nested[indicator]));
+    };
+
+    d3.csv("data/simplified.csv", function(data) {
+        this.nested = d3.nest()
             .key(function(d) {return d["Indicator Name"]})
             .key(function(d) {return d["Country Name"]})
             .rollup(function(v) { return v.map(function(d) { return d; }); })
             .map(data);
 
-        for (indicator in nested) {
-            barchartElements.push(new Barchart(id, indicator, nested[indicator]));
+        for (indicator in this.nested) {
+            this.addChart(indicator);
         }
-        console.log(nested);
+        //console.log(this.nested);
     }.bind(this));
 }

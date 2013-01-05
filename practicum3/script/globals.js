@@ -16,8 +16,22 @@ function updateSlider(value)
 			console.log(row);	
 			life_expectancy_data[row["Country Name"]] = row["2008"];
 		});
+                console.log(life_expectancy_data);
 	});
+        console.log("kom hier");
+                console.log(life_expectancy_data);
+        // Hieronder is het misschien nog niet ingeladen
 
-	console.log(life_expectancy_data);
 }
+
+// Zo lees ik in
+// En Dan gewoon data[indicatorName][countryName]
+var data;
+d3.csv("data/simplified.csv", function(data) {
+    data = d3.nest()
+        .key(function(d) {return d["Indicator Name"]})
+        .key(function(d) {return d["Country Name"]})
+        .rollup(function(v) { return v.map(function(d) { return d; }); })
+        .map(data);
+});
 
