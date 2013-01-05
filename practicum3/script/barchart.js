@@ -1,4 +1,4 @@
-function Barchart(id, data) {
+function Barchart(id, indicator, data) {
 
     var margin = {top: 20, right: 40, bottom: 30, left: 20},
         width = 300 - margin.left - margin.right,
@@ -37,7 +37,9 @@ function Barchart(id, data) {
     var title = svg.append("text")
         .attr("class", "title")
         .attr("dy", ".71em")
-        .text(2000);
+        .text(indicator);
+
+    // TODO: 1960 tot 1012
 
     // TODO data die we willen hebben inlezen
     // Liever wil je de data precies 1 keer inlezen
