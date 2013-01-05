@@ -6,7 +6,7 @@ body {
     /*color: white;*/
 }
 
-.visualize {
+#barcharts.visualize {
     background-color: rgb(37, 37, 37);
 }
 
