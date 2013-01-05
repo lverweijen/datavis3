@@ -42,7 +42,9 @@ function Map(id) {
             return "rgb(0,0,0)";
         })     
           .attr("d", path)
-          .on("click", click);
+          .on("click", click)
+          .on("mouseover", selectLand)
+          .on("mouseout" , deselectLand);
     });
 
     this.loadMap = function(data)
@@ -120,6 +122,22 @@ function Map(id) {
           .duration(1000)
           .attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
           .style("stroke-width", 1.5 / k + "px");
+    }
+
+    function selectLand()
+    {
+      //Set Color
+      var selection = d3.select(this);
+      selection.attr("oldcolor",selection.style("fill"));
+      selection.style("fill","green");
+    }
+
+    function deselectLand()
+    {
+      //Set Color
+      var selection = d3.select(this);
+      var tmp = selection.attr("name");
+      selection.style("fill",selection.attr("oldcolor"));
     }
 }
 
