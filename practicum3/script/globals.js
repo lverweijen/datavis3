@@ -26,9 +26,8 @@ function updateSlider(value)
 
 // Zo lees ik in
 // En Dan gewoon data[indicatorName][countryName]
-var data;
 d3.csv("data/simplified.csv", function(data) {
-    data = d3.nest()
+    window.data = d3.nest()
         .key(function(d) {return d["Indicator Name"]})
         .key(function(d) {return d["Country Name"]})
         .rollup(function(v) { return v.map(function(d) { return d; }); })
