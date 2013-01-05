@@ -2,18 +2,15 @@ function Barchart(id, indicator, data) {
 
     var margin = {top: 20, right: 40, bottom: 30, left: 20},
         width = 300 - margin.left - margin.right,
-        height = 150 - margin.top - margin.bottom,
-        barWidth = Math.floor(width / 19) - 1;
+        height = 150 - margin.top - margin.bottom;
 
     var formatPercent = d3.format("04d");
 
-    var x = d3.scale.linear()
-        .range([1960, 2012]);
-        //.rangeRoundBands([0, width], .1);
+    var x = d3.scale.ordinal()
+        .rangeRoundBands([0, width], .1);
 
     var y = d3.scale.linear()
-        .range([0, 1]);
-        //.range([height, 0]);
+        .range([height, 0]);
 
     var xAxis = d3.svg.axis()
         .scale(x)
@@ -92,17 +89,23 @@ function Barchart(id, indicator, data) {
 
     this.selectCountry = function(selectId, country) {
         var countryData = data[country];
-        window.countryData = countryData;
-        console.log(countryData);
 
         // I just want a simple numeric array, bitch.
-        // Probabably because I have fucked up data
-        var stats = [];
+        var years = [];
         for(year = 1960; year <= 2012; year++) {
-            stats[year] = +countryData[year+""];
+            countryData[year] = +countryData[year+""];
+            years.push(year);
         }
 
-        console.log(stats);
+        window.x = x;
+        window.y = y;
+        
+        x.domain(years);
+        //y.domain([0, d3.max(countryData, function(d) { return countryData[d]; })]);
+        //y.domain([0, 100]);
+        //y.domain(years.map(function(year){return countryData[year];}))
+        y.domain([0, d3.max(years, function(d) { return countryData[d]; })]);
+        //console.log(y.domain);
 
         svg.append("g")
         .attr("class", "x axis")
@@ -117,23 +120,28 @@ function Barchart(id, indicator, data) {
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Frequency");
+        //.text("Frequency");
 
     svg.selectAll(".bar")
-        .data(data)
+        //.data(countryData)
+        .data(years)
         .enter().append("rect")
         .attr("class", "bar")
         .attr("x", function(d) { return x(d); })
-        .attr("width", x.range())
+        .attr("width", x.rangeBand())
         .attr("y", function(d) { return y(countryData[d]); })
         .attr("height", function(d) { 
-            return height - y(d.count); 
+            //console.log(d);
+            //console.log("b");
+            //c
+            return height - y(countryData[d]); 
+            //return height - y(countryData[d]); 
         });
+    //console.log("helo");
 
     };
 
     this.deselectCountry = function(country) {
-        data.f
 
     };
 
