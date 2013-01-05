@@ -1,6 +1,7 @@
 //GLOBAL VARIABLES
 var year = 2005;
 var life_expectancy_data = [];
+var selected_country = "Netherlands";
 
 //GLOBAL OBJECTS
 var map;
@@ -32,6 +33,7 @@ function updateSlider(value)
 
 	//refresh stuff
 	map.loadMap(life_expectancy_data);
+	azimuthal.loadMap(life_expectancy_data);
 };
 
 updateSlider(1998);
