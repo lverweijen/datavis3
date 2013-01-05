@@ -30,9 +30,31 @@ function Map(id) {
       g.selectAll("path")
           .data(json.features)
         .enter().append("path")
+        .attr("n",function(d,i){
+            return json.features[i].properties.name;
+        })
+        .style("fill",function(d,i)
+        {
+            return "gray";
+        })
           .attr("d", path)
           .on("click", click);
     });
+
+    this.loadMap = function(data)
+    {
+        var list = g.selectAll("path")[0];
+        list.forEach(function(i)
+        {
+            $(i).attr("style",function(d,index,rr){
+                var expectancy = life_expectancy_data[$(i).attr("n")];
+                console.log(expectancy);
+                var color = gradient(1,0.35,0,40,90,expectancy);
+                return "fill: " + color;
+            });
+        });
+    }
+    this.loadMap();
 
     function click(d) {
       var x = 0,
@@ -57,4 +79,17 @@ function Map(id) {
           .attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
           .style("stroke-width", 1.5 / k + "px");
     }
+}
+
+
+function AdBox() {
+this.width = 200;
+this.height = 60;
+this.text = 'default ad text';
+this.prototype.move = function() {
+    console.log("hello world");
+}
+this.prototype.display = function() {
+// code for display method goes here
+}
 }
