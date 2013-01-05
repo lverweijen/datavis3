@@ -1,5 +1,7 @@
 function Barchart(id, indicator, data) {
 
+    console.log("daar");
+
     var margin = {top: 20, right: 40, bottom: 30, left: 20},
         width = 300 - margin.left - margin.right,
         height = 150 - margin.top - margin.bottom;
@@ -38,11 +40,12 @@ function Barchart(id, indicator, data) {
         var countryData = data[country];
 
         // I just want a simple numeric array, bitch.
-        var years = [];
-        for(year = 1960; year <= 2012; year++) {
+        var years = d3.range(1960, 2012 + 1);
+
+        years.forEach(function(year) {
             countryData[year] = +countryData[year+""];
-            years.push(year);
-        }
+        })
+
 
         //window.x = x;
         //window.y = y;
@@ -57,6 +60,7 @@ function Barchart(id, indicator, data) {
         svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
+            .attr("opacity", .333)
             .call(xAxis);
 
         svg.append("g")
@@ -66,10 +70,11 @@ function Barchart(id, indicator, data) {
             .attr("transform", "rotate(-90)")
             .attr("y", 6)
             .attr("dy", ".71em")
-            .style("text-anchor", "end")
+            .attr("opacity", .333)
+            .style("text-anchor", "end");
             //.text("Frequency");
 
-            svg.selectAll(".bar")
+        svg.selectAll(".bar")
             //.data(countryData)
             .data(years)
             .enter().append("rect")
@@ -89,8 +94,37 @@ function Barchart(id, indicator, data) {
     };
 
     // Testing
-    this.selectCountry(0, "United States");
     this.selectCountry(0, "United Kingdom");
+    //this.selectCountry(0, "United States");
+    //svg.transition().duration(0);
+
+    // Nu gaan proberen united states er overheen te tekenen
+    // als dit lukt, kan ik waarschijnlijk dingen weghalen en tevoorschijn naar wens
+        var countryData = data["United States"];
+
+        var years = d3.range(1960, 2012 + 1);
+
+        years.forEach(function(year) {
+            countryData[year] = +countryData[year+""];
+        });
+
+        var bar = svg.selectAll(".bar")
+            .data(years.concat(years))
+            .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return x(d); })
+            .attr("width", x.rangeBand())
+            .attr("y", function(d) { return y(countryData[d]); })
+            .attr("opacity", .5)
+            .style("fill", "blue") // ANDER KLEURTJE
+            //.css("color", "DDDDDD")
+            .attr("height", function(d) { 
+                return height - y(countryData[d]); 
+            });
+
+        years.forEach(function(year) {
+            bar.push(year);
+        });
 }
 
 //

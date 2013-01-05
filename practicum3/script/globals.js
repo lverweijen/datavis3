@@ -11,7 +11,7 @@ var graph;
 $(document).ready(function(){
 	map 		= new Map("#map");
 	azimuthal 	= new Azimuthal("#globe", 160, "ortographic");
-	Barcharts 	= new Barcharts("#barcharts");
+	barcharts 	= new Barcharts("#barcharts");
 	// graph 		= new Graph("#graph");
 });
 
@@ -31,12 +31,13 @@ function updateSlider(value)
 	});
 
 	//refresh stuff
-	map.loadMap(life_expectancy_data);
+	//map.loadMap(life_expectancy_data);
 };
 
 updateSlider(1998);
 
 d3.csv("data/simplified.csv", function(data) {
+    console.log("data");
     window.data = d3.nest()
         .key(function(d) {return d["Indicator Name"]})
         .key(function(d) {return d["Country Name"]})
