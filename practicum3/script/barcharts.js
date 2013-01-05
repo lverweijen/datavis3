@@ -10,5 +10,11 @@ function Barcharts(id, subjects) {
         this.addChart();
     }
 
+    d3.csv("data/WDIandGDF_csv/simplified.csv", function(data) {
+        window.data = data;
+        console.log(data);
+
+    })
+
 
 }
