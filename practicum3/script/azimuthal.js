@@ -66,8 +66,10 @@ function Azimuthal(id, projection, mode) {
         });
     }
 
-    function setSelection()
+    function setSelection(d)
     {
+      map.zoom(d);
+        
         var selection = d3.select(this);
         console.log(selection.attr("n"));
         selected_country = selection.attr("n");

@@ -71,6 +71,33 @@ function Map(id) {
         });
     }
 
+    this.zoom = function(d)
+    {
+          var x = 0,
+              y = 0,
+              k = 1;
+
+          if (d && centered !== d) {
+            var centroid = path.centroid(d);
+            x = -centroid[0];
+            y = -centroid[1];
+            k = 4;
+            centered = d;
+          } 
+          else {
+            centered = null;
+          }
+
+          g.selectAll("path")
+              .classed("active", centered && function(d) { return d === centered; });
+
+          g.transition()
+              .duration(1000)
+              .attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
+              .style("stroke-width", 1.5 / k + "px");
+    }
+
+
     function click(d) {
       var x = 0,
           y = 0,
