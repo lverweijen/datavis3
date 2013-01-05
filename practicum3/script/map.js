@@ -1,64 +1,60 @@
 // Zo maak je een class in javascript
 function Map(id) {
+    var width = 800,
+        height = 600,
+        centered;
 
-    //var width = 960,
-        //height = 500;
-    var width = 640,
-        height = 400;
+    var projection = d3.geo.equirectangular()
+        .scale(width)
+        .translate([0, 0]);
 
-    //var quantize = d3.scale.quantize()
-        //.domain([0, .15])
-        //.range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
+    var path = d3.geo.path()
+        .projection(projection);
 
-    var path = d3.geo.path();
-
-    var svg = d3.select(id).append("svg")
+    var svg = d3.select("body").append("svg")
         .attr("width", width)
         .attr("height", height);
 
-    var counties = svg.append("g")
-        .attr("id", "counties")
-        .attr("class", "Blues");
+    svg.append("rect")
+        .attr("class", "background")
+        .attr("width", width)
+        .attr("height", height)
+        .on("click", click);
 
-    var states = svg.append("g")
+    var g = svg.append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+      .append("g")
         .attr("id", "states");
 
     d3.json("data/world-countries.json", function(json) {
-        counties.selectAll("path")
-        .data(json.features)
+      g.selectAll("path")
+          .data(json.features)
         .enter().append("path")
-        //.attr("class", data ? quantize : null)
-        .attr("d", path);
+          .attr("d", path)
+          .on("click", click);
     });
 
-    //d3.json("data/us-states.json", function(json) {
-        //states.selectAll("path")
-        //.data(json.features)
-        //.enter().append("path")
-        //.attr("d", path);
-    //});
+    function click(d) {
+      var x = 0,
+          y = 0,
+          k = 1;
 
-    //queue()
-        //.defer(d3.json, "/d/4090846/us.json")
-        //.defer(d3.tsv, "unemployment.tsv")
-        //.await(ready);
+      if (d && centered !== d) {
+        var centroid = path.centroid(d);
+        x = -centroid[0];
+        y = -centroid[1];
+        k = 4;
+        centered = d;
+      } else {
+        centered = null;
+      }
 
-    //function ready(error, us, unemployment) {
-        //var rateById = {};
+      g.selectAll("path")
+          .classed("active", centered && function(d) { return d === centered; });
 
-        //unemployment.forEach(function(d) { rateById[d.id] = +d.rate; });
-
-        //svg.append("g")
-            //.attr("class", "counties")
-            //.selectAll("path")
-            //.data(topojson.object(us, us.objects.counties).geometries)
-            //.enter().append("path")
-            //.attr("class", function(d) { return quantize(rateById[d.id]); })
-            //.attr("d", path);
-
-        //svg.append("path")
-            //.datum(topojson.mesh(us, us.objects.states, function(a, b) { return a.id !== b.id; }))
-            //.attr("class", "states")
-            //.attr("d", path);
-    //}
+      g.transition()
+          .duration(1000)
+          .attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
+          .style("stroke-width", 1.5 / k + "px");
+    }
 }
