@@ -79,6 +79,8 @@ function Azimuthal(id, projection, mode) {
 
     function setSelection(d)
     {
+
+
         var selection = d3.select(this);
 
         //NOTE: Warom werkt deze if statement niet?

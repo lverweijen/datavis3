@@ -17,8 +17,10 @@ function Graph(id) {
     };
 
     this.deselectCountry = function(country) {
-        delete styles[country]; 
-        selectedCountries.pop(selectedCountries.indexOf(country))
+        delete styles[country];
+        var index = selectedCountries.indexOf(country);
+        if (index != -1)
+            selectedCountries.pop(index)
         updateCountries(selectedCountries);
     };
 
