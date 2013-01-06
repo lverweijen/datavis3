@@ -4,7 +4,9 @@ function Azimuthal(id, projection, mode) {
 
     this.projection = d3.geo.azimuthal()
         .mode(mode || "orthographic")
-        .scale(projection || 400);
+        .scale(200)
+            .origin([25,35])
+            .translate([200,200]);
 
     this.circle = d3.geo.greatCircle()
         .origin(this.projection.origin());
@@ -13,7 +15,7 @@ function Azimuthal(id, projection, mode) {
         .projection(this.projection);
 
     var svg = d3.select(id).append("svg:svg")
-        .attr("width", 800)
+        .attr("width", 400)
         .attr("height", 400);
 
     d3.json("data/world-countries.json", function(collection) {
@@ -69,7 +71,7 @@ function Azimuthal(id, projection, mode) {
     function setSelection(d)
     {
       map.zoom(d);
-        
+
         var selection = d3.select(this);
         console.log(selection.attr("n"));
         selected_country = selection.attr("n");
