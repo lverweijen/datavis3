@@ -65,12 +65,32 @@ function Map(id) {
 
         list.forEach(function(i)
         {
-            $(i).attr("style",function(d,index,rr){
-                var value = data[$(i).attr("n")];
-                var color = gradient(1,0.35,0,min,max,value);
-                return "fill: " + color + ";stroke: rgb(0,0,0)";
-            });
+          $(i).attr("map",function(){
+            var value = data[$(i).attr("n")];
+            var color = gradient(1,0.35,0,min,max,value);
+            return "fill: " + color + ";stroke: rgb(0,0,0)";
+          });
+          $(i).attr("style",$(i).attr("map"));
         });
+
+        list.forEach(function(i)
+        {
+          if(selection_1 != undefined && $(i).attr("n")==selection_1.attr("n"))
+            $(i).attr("style","fill:rgb(256,0,0);stroke:rgb(0,0,0)");
+          if(selection_2 != undefined && $(i).attr("n")==selection_2.attr("n"))
+            $(i).attr("style","fill:rgb(256,0,256);stroke:rgb(0,0,0)");
+          if(selection_3 != undefined && $(i).attr("n")==selection_3.attr("n"))
+            $(i).attr("style","fill:rgb(256,256,0);stroke:rgb(0,0,0)");
+        });
+    }
+
+    function clear()
+    {
+      var list = g.selectAll("path")[0];
+      list.forEach(function(i)
+      {
+        $(i).attr("style",$(i).attr("map"));
+      });
     }
 
     this.zoom = function(d)
@@ -97,6 +117,18 @@ function Map(id) {
               .duration(1000)
               .attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
               .style("stroke-width", 1.5 / k + "px");
+
+          clear();
+          var list = g.selectAll("path")[0];
+          list.forEach(function(i)
+          {
+            if(selection_1 != undefined && $(i).attr("n")==selection_1.attr("n"))
+              $(i).attr("style","fill:rgb(256,0,0);stroke:rgb(0,0,0)");
+            if(selection_2 != undefined && $(i).attr("n")==selection_2.attr("n"))
+              $(i).attr("style","fill:rgb(256,0,256);stroke:rgb(0,0,0)");
+            if(selection_3 != undefined && $(i).attr("n")==selection_3.attr("n"))
+              $(i).attr("style","fill:rgb(256,256,0);stroke:rgb(0,0,0)");
+          });
     }
 
 
@@ -126,7 +158,6 @@ function Map(id) {
       var selection = d3.select(this);
       selected_country = selection.attr("n");
       console.log(selected_country);
-      barcharts.selectCountry(selected_country);
       graph.selectCountry(selected_country);
     }
 
@@ -135,7 +166,7 @@ function Map(id) {
       //Set Color
       var selection = d3.select(this);
       selection.attr("oldcolor",selection.style("fill"));
-      selection.style("fill","green");
+      selection.style("fill","white");
     }
 
     function deselectLand()
