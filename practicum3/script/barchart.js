@@ -17,7 +17,7 @@ function Barchart(id, indicator, data) {
     }
 
     var layer;
-    var svg = d3.select("#barcharts").append("svg")
+    //var svg = d3.select("#barcharts").append("svg")
 
     var selectedCountries = [];
     var styles = new Object();
@@ -40,9 +40,21 @@ function Barchart(id, indicator, data) {
         updateCountries(selectedCountries);
     };
 
+    this.clear = function() {
+        updateCountries([]);
+    };
+
+    var svg;
+
     function updateCountries(newcountries) {
         // Sommige delen van deze functie kunnen misschien ook hierboven gedeclareerd worden.
         // Ik weet alleen niet welke.
+
+        if (svg) {
+        //d3.select(id).selectAll("svg").remove();
+        svg.remove();
+    }
+        svg = d3.select("#barcharts").append("svg")
 
         if (layer)
             layer.data([]).exit().remove();
@@ -61,14 +73,25 @@ function Barchart(id, indicator, data) {
         var x = d3.scale.ordinal()
             .domain(d3.range(m))
             .rangeRoundBands([0, width], .08);
+            //.rangeRoundBands([0, width], 3);
+
+            // x-as
+        //var x2 = d3.ordinal.scale()
+            //.range([0, width])
+            //.domain(d3.range(1960, 2012, 10));
+            ////.domain(function(h) {console.log("H " + h)});
 
         var y = d3.scale.linear()
             .domain([0, yStackMax])
             .range([height, 0]);
 
-        var color = d3.scale.linear()
-            .domain([0, n - 1])
-            .range(["#aad", "#556"]);
+        //var color = d3.scale.linear()
+            //.domain([0, n - 1])
+            //.range(["#aad", "#556"]);
+
+        // Maar zo kun je ook kleuren aanpassen
+        var color = d3.scale.category10();
+        //var color = d3.scale.category20b();
 
         // TODO gebruik dit als cssClass werkt
         //var color = function(domain) {
@@ -77,6 +100,7 @@ function Barchart(id, indicator, data) {
 
         var xAxis = d3.svg.axis()
             .scale(x)
+            //.scale(10)
             .tickSize(0)
             .tickPadding(6)
             .orient("bottom");

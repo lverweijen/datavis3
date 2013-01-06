@@ -159,6 +159,6 @@ function Graph(id) {
     //updateCountries(["United States", "United Kingdom", "China"]);
     //updateCountries(["United States"]);
     //updateCountries(["United States", "United Kingdom", "China"]);
-    this.selectCountry("United States");
-    this.selectCountry("Italy");
+    //this.selectCountry("United States");
+    //this.selectCountry("Italy");
 }
