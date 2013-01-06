@@ -89,6 +89,7 @@ function Azimuthal(id, projection, mode) {
                 old = selection_3;
                 selection_3.attr("style",selection_3.attr("map"));
                 barcharts.deselectCountry(old.attr("n"));
+                graph.deselectCountry(old.attr("n"));
             }
 
                 selection_3 = selection_2;
@@ -102,7 +103,9 @@ function Azimuthal(id, projection, mode) {
                 if(selection_3 != undefined)
                     selection_3.attr("style","fill:rgb(256,256,0);stroke:rgb(0,0,0)");
 
+                //console.log(barcharts);
                 barcharts.selectCountry(selection_1.attr("n"));
+                graph.selectCountry(selection_1.attr("n"));
         }
         map.zoom(d);        
     }

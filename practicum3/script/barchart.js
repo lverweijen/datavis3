@@ -135,6 +135,8 @@ function Barchart(id, indicator, data) {
             .call(xAxis);
     }
 
+    //updateCountries([]);
+
     //updateCountries(["United States"]);
     //updateCountries(["United States", "United Kingdom"]);
     //updateCountries(["United States", "United Kingdom", "Italy"]);

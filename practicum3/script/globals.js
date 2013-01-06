@@ -26,7 +26,7 @@ $(document).ready(function(){
         map 		= new Map("#map");
         azimuthal 	= new Azimuthal("#globe", 160, "ortographic");
         barcharts 	= new Barcharts("#barcharts");
-        // graph 	        = new Graph("#graph");
+         graph 	        = new Graph("#graph");
     });
 
     d3.csv("/data/datasets/life_expectancy_test.csv", function(csv)

@@ -26,28 +26,21 @@ function Graph(id) {
     // TODO: geval afhandelen dat country niet bestaat
     var formula = function(country) {
         var countryData = window.data["Life expectancy at birth, total (years)"][country];
-        console.log(country);
-        console.log(countryData);
 
         var paired = [];
         for (var year = 1960; year <= 2012; year++) {
-            paired.push({date: +year, temperature: isNaN(countryData[year]) ? 0 : +countryData[year]});
+            if (!countryData || isNaN(countryData[year]))
+                value = 0;
+            else
+                value = +countryData[year];
+            paired.push({date: +year, temperature: value});
         }
         return paired;
     };
 
-    console.log(formula("United Kingdom"));
-
-
-
-    console.log("inladen");
-
     var svg;
 
     function updateCountries(countries) {
-        console.log("meneer "+ countries);
-        //d3.selectAll(id).remove();
-
         if(svg)
             svg.data([]).exit().remove();
 
@@ -63,7 +56,15 @@ function Graph(id) {
         var y = d3.scale.linear()
             .range([height, 0]);
 
-        var color = d3.scale.category10();
+        //var color = d3.scale.category10();
+        //var color = function(c) {
+            //switch (c) {
+                //case 0: return "red";
+                //case 0: return "yellow";
+                //case 0: return "purple";
+            //}
+        //}
+        var color = d3.scale.ordinal().range(["red", "purple", "yellow"]);
 
         var xAxis = d3.svg.axis()
 
@@ -128,7 +129,7 @@ function Graph(id) {
             .attr("y", 6)
             .attr("dy", ".71em")
             .style("text-anchor", "end")
-            .text("Temperature (ºF)");
+            .text("Quality of Life");
 
         console.log("test5");
 
