@@ -105,6 +105,7 @@ function Azimuthal(id, projection, mode) {
 
                 //console.log(barcharts);
                 barcharts.selectCountry(selection_1.attr("n"));
+                barcharts.updateCountries();
                 graph.selectCountry(selection_1.attr("n"));
         }
         map.zoom(d);        

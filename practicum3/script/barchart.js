@@ -27,7 +27,7 @@ function Barchart(id, indicator, data) {
         if (data[country]) {
             selectedCountries.push(country);
             styles[country] = cssclass;
-            updateCountries(selectedCountries);
+            //updateCountries(selectedCountries);
             console.log(selectedCountries );
         } else {
             console.log("I dunna bout " + country);
@@ -37,7 +37,7 @@ function Barchart(id, indicator, data) {
     this.deselectCountry = function(country) {
         delete styles[country]; 
         selectedCountries.pop(selectedCountries.indexOf(country))
-        updateCountries(selectedCountries);
+        //updateCountries(selectedCountries);
     };
 
     this.clear = function() {
@@ -46,7 +46,7 @@ function Barchart(id, indicator, data) {
 
     var svg;
 
-    function updateCountries(newcountries) {
+    this.updateCountries = function() {
         newcountries = selectedCountries;
         // Sommige delen van deze functie kunnen misschien ook hierboven gedeclareerd worden.
         // Ik weet alleen niet welke.
