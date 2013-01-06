@@ -47,6 +47,7 @@ function Barchart(id, indicator, data) {
     var svg;
 
     function updateCountries(newcountries) {
+        newcountries = selectedCountries;
         // Sommige delen van deze functie kunnen misschien ook hierboven gedeclareerd worden.
         // Ik weet alleen niet welke.
 
@@ -85,13 +86,7 @@ function Barchart(id, indicator, data) {
             .domain([0, yStackMax])
             .range([height, 0]);
 
-        //var color = d3.scale.linear()
-            //.domain([0, n - 1])
-            //.range(["#aad", "#556"]);
-
-        // Maar zo kun je ook kleuren aanpassen
-        var color = d3.scale.category10();
-        //var color = d3.scale.category20b();
+        var color = d3.scale.ordinal().range(["red", "purple", "yellow"]);
 
         // TODO gebruik dit als cssClass werkt
         //var color = function(domain) {
