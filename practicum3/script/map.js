@@ -122,6 +122,11 @@ function Map(id) {
           .duration(1000)
           .attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
           .style("stroke-width", 1.5 / k + "px");
+
+      var selection = d3.select(this);
+      selected_country = selection.attr("n");
+      console.log(selected_country);
+      barcharts.selectCountry(selected_country);
     }
 
     function selectLand()
@@ -143,13 +148,13 @@ function Map(id) {
 
 
 function AdBox() {
-this.width = 200;
-this.height = 60;
-this.text = 'default ad text';
-this.prototype.move = function() {
-    console.log("hello world");
-}
-this.prototype.display = function() {
-// code for display method goes here
-}
+    this.width = 200;
+    this.height = 60;
+    this.text = 'default ad text';
+    this.prototype.move = function() {
+        console.log("hello world");
+    }
+    this.prototype.display = function() {
+    // code for display method goes here
+    }
 }

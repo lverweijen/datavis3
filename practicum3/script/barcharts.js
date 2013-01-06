@@ -26,6 +26,6 @@ function Barcharts(id, subjects) {
         }.bind(this))
     }
 
-    this.selectCountry("Italy", null);
-    this.selectCountry("United Kingdom", null);
+    //this.selectCountry("Italy", null);
+    //this.selectCountry("United Kingdom", null);
 }

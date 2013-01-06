@@ -36,6 +36,10 @@ $(document).ready(function(){
         });
 });
 
+function setSelection(country) {
+
+}
+
 
 
 

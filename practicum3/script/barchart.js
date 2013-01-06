@@ -1,5 +1,3 @@
-console.log("Hiero");
-
 function Barchart(id, indicator, data) {
 
     function countries(countries) {
@@ -26,11 +24,14 @@ function Barchart(id, indicator, data) {
 
     this.selectCountry = function(country, cssclass) {
         // FIXME cssclass wordt genegeerd
-        selectedCountries.push(country);
-        styles[country] = cssclass;
-        updateCountries(selectedCountries);
-        console.log(selectedCountries );
-        console.log(country + "toegevoegd");
+        if (data[country]) {
+            selectedCountries.push(country);
+            styles[country] = cssclass;
+            updateCountries(selectedCountries);
+            console.log(selectedCountries );
+        } else {
+            console.log("I dunna bout " + country);
+        }
     };
 
     this.deselectCountry = function(country) {

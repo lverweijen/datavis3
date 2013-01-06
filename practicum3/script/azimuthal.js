@@ -75,6 +75,9 @@ function Azimuthal(id, projection, mode) {
         var selection = d3.select(this);
         console.log(selection.attr("n"));
         selected_country = selection.attr("n");
+
+        // Moet azimuthal ook selecten?
+        //barcharts.selectCountry(selected_country);
     }
 
     function selectLand()
