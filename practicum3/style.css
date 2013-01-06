@@ -10,6 +10,10 @@ body {
     background-color: rgb(37, 37, 37);
 }
 
+#graph.visualize {
+    background-color: rgb(37, 37, 37);
+}
+
 .select1 {
     fill: #17f93d;
 }
@@ -65,6 +69,12 @@ table {
     margin: 1px;
     color: white;
   }
+
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}
 
 
 /*Oud*/

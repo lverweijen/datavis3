@@ -127,6 +127,7 @@ function Map(id) {
       selected_country = selection.attr("n");
       console.log(selected_country);
       barcharts.selectCountry(selected_country);
+      graph.selectCountry(selected_country);
     }
 
     function selectLand()
