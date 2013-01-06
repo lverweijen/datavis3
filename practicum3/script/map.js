@@ -40,7 +40,10 @@ function Map(id) {
         .style("stroke",function(d,i)
         {
             return "rgb(0,0,0)";
-        })     
+        }) 
+        .attr("map",function(){
+          return "fill:rgb(40,40,40);stroke:rgb(0,0,0)"
+        })    
           .attr("d", path)
           .on("click", click)
           .on("mouseover", selectLand)
@@ -86,6 +89,7 @@ function Map(id) {
 
     function clear()
     {
+      console.log("cleared map");
       var list = g.selectAll("path")[0];
       list.forEach(function(i)
       {
@@ -133,48 +137,48 @@ function Map(id) {
 
 
     function click(d) {
-      var x = 0,
-          y = 0,
-          k = 1;
+      // var x = 0,
+      //     y = 0,
+      //     k = 1;
 
-      if (d && centered !== d) {
-        var centroid = path.centroid(d);
-        x = -centroid[0];
-        y = -centroid[1];
-        k = 4;
-        centered = d;
-      } else {
-        centered = null;
-      }
+      // if (d && centered !== d) {
+      //   var centroid = path.centroid(d);
+      //   x = -centroid[0];
+      //   y = -centroid[1];
+      //   k = 4;
+      //   centered = d;
+      // } else {
+      //   centered = null;
+      // }
 
-      g.selectAll("path")
-          .classed("active", centered && function(d) { return d === centered; });
+      // g.selectAll("path")
+      //     .classed("active", centered && function(d) { return d === centered; });
 
-      g.transition()
-          .duration(1000)
-          .attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
-          .style("stroke-width", 1.5 / k + "px");
+      // g.transition()
+      //     .duration(1000)
+      //     .attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
+      //     .style("stroke-width", 1.5 / k + "px");
 
-      var selection = d3.select(this);
-      selected_country = selection.attr("n");
-      console.log(selected_country);
-      graph.selectCountry(selected_country);
+      // var selection = d3.select(this);
+      // selected_country = selection.attr("n");
+      // console.log(selected_country);
+      // graph.selectCountry(selected_country);
     }
 
     function selectLand()
     {
-      //Set Color
-      var selection = d3.select(this);
-      selection.attr("oldcolor",selection.style("fill"));
-      selection.style("fill","white");
+      // //Set Color
+      // var selection = d3.select(this);
+      // selection.attr("oldcolor",selection.style("fill"));
+      // selection.style("fill","white");
     }
 
     function deselectLand()
     {
-      //Set Color
-      var selection = d3.select(this);
-      var tmp = selection.attr("name");
-      selection.style("fill",selection.attr("oldcolor"));
+      // //Set Color
+      // var selection = d3.select(this);
+      // var tmp = selection.attr("name");
+      // selection.style("fill",selection.attr("oldcolor"));
     }
 }
 
