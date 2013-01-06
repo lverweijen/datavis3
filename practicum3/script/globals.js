@@ -11,29 +11,33 @@ var barcharts;
 var graph;
 
 //GLOBAL OPERATIONS
-d3.csv("data/simplified.csv", function(data) {
-    window.data = d3.nest()
-    .key(function(d) {return d["Indicator Name"]})
-    .key(function(d) {return d["Country Name"]})
-    .rollup(function(v) { return v[0]; })
-    .map(data);
-});
-
-d3.csv("/data/datasets/life_expectancy_test.csv", function(csv)
-{
-	csv.forEach(function(row)
-	{
-		life_expectancy_data[row["Country Name"]] = row;
-	});
-});
-
-
-
 $(document).ready(function(){
-	map 		= new Map("#map");
-	azimuthal 	= new Azimuthal("#globe", 160, "ortographic");
-	barcharts 	= new Barcharts("#barcharts");
+    d3.csv("data/simplified.csv", function(data) {
+        //console.log("data");
+        //console.log(data);
+        window.data = d3.nest()
+        .key(function(d) {return d["Indicator Name"]})
+        .key(function(d) {return d["Country Name"]})
+
+        .rollup(function(v) { return v[0]; })
+        .map(data);
+
+        map 		= new Map("#map");
+        azimuthal 	= new Azimuthal("#globe", 160, "ortographic");
+        barcharts 	= new Barcharts("#barcharts");
+    });
+
+    d3.csv("/data/datasets/life_expectancy_test.csv", function(csv)
+        {
+            csv.forEach(function(row)
+                {
+                    life_expectancy_data[row["Country Name"]] = row;
+                });
+        });
 });
+
+
+
 
 function updateSlider(value)
 {
