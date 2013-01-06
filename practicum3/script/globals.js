@@ -3,6 +3,9 @@ var year 					= 2005;
 var life_expectancy 		= [];
 var life_expectancy_data	= [[]];
 var selected_country 		= "Netherlands";
+var selection_1				= null;
+var selection_2				= null;
+var selection_3				= null;
 
 //GLOBAL OBJECTS
 var map;
@@ -13,8 +16,6 @@ var graph;
 //GLOBAL OPERATIONS
 $(document).ready(function(){
     d3.csv("data/simplified.csv", function(data) {
-        //console.log("data");
-        //console.log(data);
         window.data = d3.nest()
         .key(function(d) {return d["Indicator Name"]})
         .key(function(d) {return d["Country Name"]})

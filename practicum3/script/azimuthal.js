@@ -25,14 +25,14 @@ function Azimuthal(id, projection, mode) {
         .attr("n",function(d,i){
             return collection.features[i].properties.name;
         })
-        .style("fill",function(d,i)
+        .attr("style",function(d,i)
         {
-            return "rgb(40,40,40)";
+            return "fill:rgb(40,40,40);stroke:rgb(0,0,0)";
         })
-        .style("stroke",function(d,i)
+        .attr("map",function(d,i)
         {
-            return "rgb(0,0,0)";
-        })        
+            return "fill:rgb(40,40,40);stroke:rgb(0,0,0)";
+        })      
         .attr("d", clip)
         .on("click",setSelection)
         .on("mouseover", selectLand)
@@ -45,10 +45,10 @@ function Azimuthal(id, projection, mode) {
     this.loadMap = function(data)
     {
         var list = svg.selectAll("path")[0];
-        
         var min =  9999;
         var max = -9999;
 
+        //Find minumum and maximum values in data
         list.forEach(function(i)
         {
             var value = data[$(i).attr("n")];
@@ -58,42 +58,68 @@ function Azimuthal(id, projection, mode) {
                 min=value;
         });
 
+        //Set the map parameter
         list.forEach(function(i)
         {
-            $(i).attr("style",function(d,index,rr){
+            $(i).attr("map",function(){
                 var value = data[$(i).attr("n")];
                 var color = gradient(0.35,0,1,min,max,value);
                 return "fill: " + color + ";stroke: rgb(0,0,0)";
             });
+            $(i).attr("style",$(i).attr("map"));
         });
+
+        if(selection_1 != undefined)
+            selection_1.attr("style","fill:rgb(256,0,0);stroke:rgb(0,0,0)");
+        if(selection_2 != undefined)
+            selection_2.attr("style","fill:rgb(256,0,256);stroke:rgb(0,0,0)");
+        if(selection_3 != undefined)
+            selection_3.attr("style","fill:rgb(256,256,0);stroke:rgb(0,0,0)");
     }
 
     function setSelection(d)
     {
-      map.zoom(d);
-
         var selection = d3.select(this);
-        console.log(selection.attr("n"));
-        selected_country = selection.attr("n");
 
-        // Moet azimuthal ook selecten?
-        //barcharts.selectCountry(selected_country);
+        //NOTE: Warom werkt deze if statement niet?
+        if(selection != selection_1 && selection != selection_2 && selection != selection_3)
+        {
+            if(selection_3 != undefined)
+            {
+                old = selection_3;
+                selection_3.attr("style",selection_3.attr("map"));
+                barcharts.deselectCountry(old.attr("n"));
+            }
+
+                selection_3 = selection_2;
+                selection_2 = selection_1;
+                selection_1 = selection;
+
+                if(selection_1 != undefined)
+                    selection_1.attr("old","fill:rgb(256,0,0);stroke:rgb(0,0,0)");
+                if(selection_2 != undefined)
+                    selection_2.attr("style","fill:rgb(256,0,256);stroke:rgb(0,0,0)");
+                if(selection_3 != undefined)
+                    selection_3.attr("style","fill:rgb(256,256,0);stroke:rgb(0,0,0)");
+
+                barcharts.selectCountry(selection_1.attr("n"));
+        }
+        map.zoom(d);        
     }
 
     function selectLand()
     {
-      //Set Color
-      var selection = d3.select(this);
-      selection.attr("oldcolor",selection.style("fill"));
-      selection.style("fill","green");
+        //Set Color
+        var selection = d3.select(this);
+        selection.attr("old",selection.attr("style"));
+        selection.attr("style","fill:rgb(200,200,200);stroke:rgb(0,0,0)");
     }
 
     function deselectLand()
     {
       //Set Color
       var selection = d3.select(this);
-      var tmp = selection.attr("name");
-      selection.style("fill",selection.attr("oldcolor"));
+      selection.attr("style",selection.attr("old"));
     }
 
     var m0, o0;
