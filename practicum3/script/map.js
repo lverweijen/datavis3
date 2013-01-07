@@ -33,10 +33,10 @@ function Map(id) {
         .attr("n",function(d,i){
             return json.features[i].properties.name;
         })
-        .attr("style",function(){
+        .attr("map",function(){
           return colors.country_clear();
         })
-        .attr("map","style")    
+        .attr("style","map")    
           .attr("d", path)
           .on("click", click)
           .on("mouseover", selectLand)
@@ -63,7 +63,7 @@ function Map(id) {
         {
           $(i).attr("map",function(){
             var value = data[$(i).attr("n")];
-            return colors.gradient(1,0.35,0,min,max,value);
+            return colors.gradient(0,1,0,min,max,value);
           });
           $(i).attr("style",$(i).attr("map"));
         });

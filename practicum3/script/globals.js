@@ -6,6 +6,7 @@ var selected_country 		= "Netherlands";
 var selection_1				= null;
 var selection_2				= null;
 var selection_3				= null;
+var coeficients				=["10","10","10","10","10","10","10"];
 
 //GLOBAL OBJECTS
 var colors = new Colors();
@@ -34,13 +35,13 @@ $(document).ready(function(){
         {
             csv.forEach(function(row)
                 {
-                    life_expectancy_data[row["Country Name"]] = row;
+                    life_expectancyy_data[row["Country Name"]] = row;
                 });
         });
 });
 
 function setSelection(country) {
-
+	
 }
 
 
@@ -66,6 +67,48 @@ function updateSlider(value)
         azimuthal.loadMap(life_expectancy);
 	// graph 		= new Graph("#graph");
 };
+
+function computeQOL()
+{
+	console.log(coeficients);
+}
+
+function updateSlider1(value)
+{
+	coeficients[0]=value;
+	computeQOL();
+}
+function updateSlider2(value)
+{
+	coeficients[1]=value;
+	computeQOL();
+}
+function updateSlider3(value)
+{
+	coeficients[2]=value;
+	computeQOL();
+}
+function updateSlider4(value)
+{
+	coeficients[3]=value;
+	computeQOL();
+}
+function updateSlider5(value)
+{
+	coeficients[4]=value;
+	computeQOL();
+}
+function updateSlider6(value)
+{
+	coeficients[5]=value;
+	computeQOL();
+}
+function updateSlider7(value)
+{
+	coeficients[6]=value;
+	computeQOL();
+}
+
 
 updateSlider(1998);
 

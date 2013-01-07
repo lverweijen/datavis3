@@ -18,6 +18,12 @@ function Azimuthal(id, projection, mode) {
         .attr("width", colors.azimuth_dim()[0])
         .attr("height", colors.azimuth_dim()[1]);
 
+    svg.append("svg:circle")
+        .attr("style",colors.globe())
+        .attr("r", colors.azimuth_dim()[0]/3+1)
+        .attr("cx", colors.azimuth_dim()[0]/2)
+        .attr("cy", colors.azimuth_dim()[1]/2);
+
     d3.json("data/world-countries.json", function(collection) {
         feature = svg.selectAll("path")
         .data(collection.features)
@@ -64,7 +70,7 @@ function Azimuthal(id, projection, mode) {
             $(i).attr("map",function(){
                 var value = data[$(i).attr("n")];
                 // var color = gradient(0.35,0,1,min,max,value);
-                return colors.gradient(0.35,0,1,min,max,value);
+                return colors.gradient(0,1,0,min,max,value);
                 // return "fill: " + color + ";stroke: rgb(0,0,0)";
             });
             $(i).attr("style",$(i).attr("map"));
