@@ -38,8 +38,7 @@ function Barchart(id, indicator, data) {
         delete styles[country];
         var index = selectedCountries.indexOf(country);
         if (index != -1)
-            selectedCountries.pop(index)
-        //updateCountries(selectedCountries);
+            selectedCountries.splice(index, 1);
     };
 
     this.clear = function() {
@@ -58,7 +57,11 @@ function Barchart(id, indicator, data) {
         svg.remove();
     }
 
-        svg = d3.select("#barcharts").append("svg")
+        svg = d3.select("#barcharts")
+            .append("svg")
+            .attr("class", "barchart");
+            //style("background-color", "grey");
+            //window.svg = svg;
 
         if (layer)
             layer.data([]).exit().remove();

@@ -12,7 +12,6 @@ function Graph(id) {
             selectedCountries.push(country);
             styles[country] = cssclass;
             updateCountries(selectedCountries);
-            console.log(selectedCountries );
         //} else {
             //console.log("I dunna bout " + country);
         //}
@@ -21,8 +20,11 @@ function Graph(id) {
     this.deselectCountry = function(country) {
         delete styles[country];
         var index = selectedCountries.indexOf(country);
+        console.log("removing " + country);
         if (index != -1)
-            selectedCountries.pop(index)
+            selectedCountries.splice(index, 1);
+        if (index == -1)
+            console.log("problem removing " + country);
         updateCountries(selectedCountries);
     };
 
@@ -32,10 +34,12 @@ function Graph(id) {
         var countryData = window.data["Life expectancy at birth, total (years)"][country];
 
         var paired = [];
-        for (var year = 1960; year <= 2010; year++) {
-            if (!countryData || isNaN(countryData[year]))
+        var value = 0;
+        for (var year = 1960; year <= 2012; year++) {
+            //if (!countryData || isNaN(countryData[year]))
+            if (!countryData)
                 value = 0;
-            else
+            else if(!isNaN(countryData[year]))
                 value = +countryData[year];
             paired.push({date: +year, temperature: value});
         }
@@ -45,8 +49,13 @@ function Graph(id) {
     var svg;
 
     function updateCountries(countries) {
-        if(svg)
-            svg.data([]).exit().remove();
+        console.log(selectedCountries );
+        countries = selectedCountries;
+        //if(svg)
+            //svg.data([]).exit().remove();
+
+        if (svg)
+            svg.remove();
 
         var margin = {top: 20, right: 80, bottom: 30, left: 50},
             width = colors.map_dim()[0] - margin.left - margin.right,
