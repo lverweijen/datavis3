@@ -151,6 +151,7 @@ function Graph(id) {
             .enter().append("g")
             .attr("style",colors.text)
             .attr("class", "city");
+                    //}
 
         city.append("path")
             .attr("class", "line")
@@ -175,7 +176,6 @@ function Graph(id) {
             .attr("x2",width)
             .attr("y2",height)
             .attr("style", colors.line);
-
             svg.append("svg:line")
                 .attr("x1",0)
                 .attr("y1",0)
@@ -189,4 +189,5 @@ function Graph(id) {
     //updateCountries(["United States", "United Kingdom", "China"]);
     //this.selectCountry("United States");
     //this.selectCountry("Italy");
+    updateCountries();
 }
