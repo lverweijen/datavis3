@@ -62,8 +62,8 @@ function updateSlider(value)
 	});
 
 	//refresh stuff
-	map.loadMap(life_expectancy);
-	azimuthal.loadMap(life_expectancy);
+        map.loadMap(life_expectancy);
+        azimuthal.loadMap(life_expectancy);
 	// graph 		= new Graph("#graph");
 };
 

@@ -27,7 +27,7 @@ function Barchart(id, indicator, data) {
         if (data[country]) {
             selectedCountries.push(country);
             styles[country] = cssclass;
-            updateCountries(selectedCountries);
+            //updateCountries(selectedCountries);
             console.log(selectedCountries );
         } else {
             console.log("I dunna bout " + country);
@@ -35,9 +35,11 @@ function Barchart(id, indicator, data) {
     };
 
     this.deselectCountry = function(country) {
-        delete styles[country]; 
-        selectedCountries.pop(selectedCountries.indexOf(country))
-        updateCountries(selectedCountries);
+        delete styles[country];
+        var index = selectedCountries.indexOf(country);
+        if (index != -1)
+            selectedCountries.pop(index)
+        //updateCountries(selectedCountries);
     };
 
     this.clear = function() {
@@ -46,7 +48,8 @@ function Barchart(id, indicator, data) {
 
     var svg;
 
-    function updateCountries(newcountries) {
+    this.updateCountries = function() {
+        newcountries = selectedCountries;
         // Sommige delen van deze functie kunnen misschien ook hierboven gedeclareerd worden.
         // Ik weet alleen niet welke.
 
@@ -85,13 +88,7 @@ function Barchart(id, indicator, data) {
             .domain([0, yStackMax])
             .range([height, 0]);
 
-        //var color = d3.scale.linear()
-            //.domain([0, n - 1])
-            //.range(["#aad", "#556"]);
-
-        // Maar zo kun je ook kleuren aanpassen
-        var color = d3.scale.category10();
-        //var color = d3.scale.category20b();
+        var color = d3.scale.ordinal().range(["red", "purple", "yellow"]);
 
         // TODO gebruik dit als cssClass werkt
         //var color = function(domain) {
@@ -104,6 +101,11 @@ function Barchart(id, indicator, data) {
             .tickSize(0)
             .tickPadding(6)
             .orient("bottom");
+
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left")
+            .tickFormat(d3.format(".2s"));
 
         svg.attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
@@ -133,6 +135,16 @@ function Barchart(id, indicator, data) {
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis);
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+          .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text(indicator);
     }
 
     //updateCountries([]);

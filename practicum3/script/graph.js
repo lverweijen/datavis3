@@ -17,8 +17,10 @@ function Graph(id) {
     };
 
     this.deselectCountry = function(country) {
-        delete styles[country]; 
-        selectedCountries.pop(selectedCountries.indexOf(country))
+        delete styles[country];
+        var index = selectedCountries.indexOf(country);
+        if (index != -1)
+            selectedCountries.pop(index)
         updateCountries(selectedCountries);
     };
 
@@ -56,14 +58,6 @@ function Graph(id) {
         var y = d3.scale.linear()
             .range([height, 0]);
 
-        //var color = d3.scale.category10();
-        //var color = function(c) {
-            //switch (c) {
-                //case 0: return "red";
-                //case 0: return "yellow";
-                //case 0: return "purple";
-            //}
-        //}
         var color = d3.scale.ordinal().range(["red", "purple", "yellow"]);
 
         var xAxis = d3.svg.axis()

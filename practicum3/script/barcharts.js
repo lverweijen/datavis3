@@ -26,6 +26,12 @@ function Barcharts(id, subjects) {
         }.bind(this))
     }
 
+    this.updateCountries = function() {
+        this.barchartElements.forEach(function(chart) {
+            chart.updateCountries();
+        }.bind(this))
+    }
+
     //this.selectCountry("Italy", null);
     //this.selectCountry("United Kingdom", null);
 }
