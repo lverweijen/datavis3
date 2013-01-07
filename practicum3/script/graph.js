@@ -9,7 +9,7 @@ function Graph(id) {
         //if (data[country]) {
             selectedCountries.push(country);
             styles[country] = cssclass;
-            updateCountries(selectedCountries);
+            this.updateCountries();
         //} else {
             //console.log("I dunna bout " + country);
         //}
@@ -20,7 +20,7 @@ function Graph(id) {
         var index = selectedCountries.indexOf(country);
         if (index != -1)
             selectedCountries.splice(index, 1);
-        updateCountries(selectedCountries);
+        this.updateCountries();
     };
 
     // Vul hier je eigen formule in.
@@ -43,7 +43,8 @@ function Graph(id) {
 
     var svg;
 
-    function updateCountries() {
+    //function updateCountries() {
+    this.updateCountries = function() {
         console.log(selectedCountries );
         var countries = selectedCountries;
 
@@ -181,24 +182,24 @@ function Graph(id) {
                 .attr("x2",0)
                 .attr("y2",height)
                 .attr("style", colors.line);
-    }
+    };
 
     //updateCountries(["United States", "United Kingdom", "China"]);
     //updateCountries(["United States"]);
     //updateCountries(["United States", "United Kingdom", "China"]);
     //this.selectCountry("United States");
     //this.selectCountry("Italy");
-    updateCountries();
+    this.updateCountries();
 
-    var table = d3.select("#sliders");
+    //var table = d3.select("#sliders");
 
-    for (var indicator in window.data) {
-        console.log("creating barchart for indicator");
-        //table.append("text").attr("mama", "joe");
-        //table.append("<p>hello</p>");
-        table.append("p").text(indicator);
-        table.append("circle");
-    }
+    //for (var indicator in window.data) {
+        //console.log("creating barchart for indicator");
+        ////table.append("text").attr("mama", "joe");
+        ////table.append("<p>hello</p>");
+        //table.append("p").text(indicator);
+        //table.append("circle");
+    //}
 }
 
 
