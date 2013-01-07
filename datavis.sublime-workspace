@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"Color",
+				"colors"
+			],
+			[
 				"sele",
 				"selection_1"
 			],
@@ -299,15 +303,24 @@
 			"file": "practicum3/script/azimuthal.js",
 			"settings":
 			{
-				"buffer_size": 4952,
+				"buffer_size": 5087,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "practicum3/script/colors.js",
+			"settings":
+			{
+				"buffer_size": 893,
+				"line_ending": "Unix",
+				"name": "function colors()"
 			}
 		},
 		{
 			"file": "practicum3/script/map.js",
 			"settings":
 			{
-				"buffer_size": 5564,
+				"buffer_size": 5261,
 				"line_ending": "Unix"
 			}
 		},
@@ -315,7 +328,7 @@
 			"file": "practicum3/index.html",
 			"settings":
 			{
-				"buffer_size": 1537,
+				"buffer_size": 1609,
 				"line_ending": "Unix"
 			}
 		},
@@ -323,7 +336,15 @@
 			"file": "practicum3/script/globals.js",
 			"settings":
 			{
-				"buffer_size": 1898,
+				"buffer_size": 1923,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "practicum3/script/barchart.js",
+			"settings":
+			{
+				"buffer_size": 4951,
 				"line_ending": "Unix"
 			}
 		}
@@ -583,6 +604,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"256",
 			"||",
 			" && ",
 			"&&",
@@ -709,7 +731,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -717,15 +739,15 @@
 					"file": "practicum3/script/azimuthal.js",
 					"settings":
 					{
-						"buffer_size": 4952,
+						"buffer_size": 5087,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3425,
-								3425
+								3614,
+								3614
 							]
 						],
 						"settings":
@@ -742,18 +764,45 @@
 				},
 				{
 					"buffer": 1,
-					"file": "practicum3/script/map.js",
+					"file": "practicum3/script/colors.js",
 					"settings":
 					{
-						"buffer_size": 5564,
+						"buffer_size": 893,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1030,
-								1030
+								120,
+								120
+							]
+						],
+						"settings":
+						{
+							"auto_name": "function colors()",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "practicum3/script/map.js",
+					"settings":
+					{
+						"buffer_size": 5261,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1023,
+								1023
 							]
 						],
 						"settings":
@@ -769,19 +818,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "practicum3/index.html",
 					"settings":
 					{
-						"buffer_size": 1537,
+						"buffer_size": 1609,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								802,
-								802
+								874,
+								874
 							]
 						],
 						"settings":
@@ -799,23 +848,23 @@
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 4,
 			"sheets":
 			[
 				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "practicum3/script/globals.js",
 					"settings":
 					{
-						"buffer_size": 1898,
+						"buffer_size": 1923,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								749,
-								749
+								1543,
+								1543
 							]
 						],
 						"settings":
@@ -823,25 +872,25 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 867.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 2,
 					"file": "practicum3/script/map.js",
 					"settings":
 					{
-						"buffer_size": 5564,
+						"buffer_size": 5261,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								370,
-								370
+								4989,
+								4989
 							]
 						],
 						"settings":
@@ -850,7 +899,7 @@
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
+						"translation.x": 48.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
@@ -861,15 +910,15 @@
 					"file": "practicum3/script/azimuthal.js",
 					"settings":
 					{
-						"buffer_size": 4952,
+						"buffer_size": 5087,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3274,
-								3274
+								2571,
+								2571
 							]
 						],
 						"settings":
@@ -879,7 +928,63 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1326.0,
+						"translation.y": 1224.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "practicum3/index.html",
+					"settings":
+					{
+						"buffer_size": 1609,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								475,
+								475
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 17.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "practicum3/script/barchart.js",
+					"settings":
+					{
+						"buffer_size": 4951,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								441,
+								441
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -915,7 +1020,7 @@
 		"cols":
 		[
 			0.0,
-			0.54375,
+			0.3575,
 			1.0
 		],
 		"rows":
@@ -944,19 +1049,11 @@
 		"selected_items":
 		[
 			[
-				"glob",
-				"practicum3/script/globals.js"
+				"bar",
+				"practicum3/script/barchart.js"
 			],
 			[
-				"azim",
-				"practicum3/script/azimuthal.js"
-			],
-			[
-				"inde",
-				"practicum3/index.html"
-			],
-			[
-				"azi",
+				"az",
 				"practicum3/script/azimuthal.js"
 			],
 			[
@@ -964,11 +1061,27 @@
 				"practicum3/script/map.js"
 			],
 			[
-				"globa",
+				"glob",
 				"practicum3/script/globals.js"
 			],
 			[
+				"inde",
+				"practicum3/index.html"
+			],
+			[
 				"glb",
+				"practicum3/script/globals.js"
+			],
+			[
+				"azim",
+				"practicum3/script/azimuthal.js"
+			],
+			[
+				"azi",
+				"practicum3/script/azimuthal.js"
+			],
+			[
+				"globa",
 				"practicum3/script/globals.js"
 			],
 			[
@@ -1000,10 +1113,6 @@
 				"practicum3/style.css2"
 			],
 			[
-				"az",
-				"practicum3/script/azimuthal.js"
-			],
-			[
 				"index",
 				"practicum3/index.html"
 			],
@@ -1014,10 +1123,6 @@
 			[
 				"barch",
 				"practicum3/script/barcharts.js"
-			],
-			[
-				"bar",
-				"practicum3/script/barchart.js"
 			],
 			[
 				"barc",

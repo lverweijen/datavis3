@@ -119,10 +119,12 @@ function Graph(id) {
         svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
+            .attr("style",colors.text)
             .call(xAxis);
 
         svg.append("g")
             .attr("class", "y axis")
+            .attr("style",colors.text)
             .call(yAxis)
             .append("text")
             .attr("transform", "rotate(-90)")
@@ -137,6 +139,7 @@ function Graph(id) {
             //.data([]).exit().remove()
             .data(cities)
             .enter().append("g")
+            .attr("style",colors.text)
             .attr("class", "city");
 
         city.append("path")
@@ -155,6 +158,20 @@ function Graph(id) {
             .text(function(d) { return d.name; });
 
         console.log("test6");
+
+        svg.append("svg:line")
+            .attr("x1",0)
+            .attr("y1",height)
+            .attr("x2",width)
+            .attr("y2",height)
+            .attr("style", colors.line);
+
+            svg.append("svg:line")
+                .attr("x1",0)
+                .attr("y1",0)
+                .attr("x2",0)
+                .attr("y2",height)
+                .attr("style", colors.line);
     }
 
     //updateCountries(["United States", "United Kingdom", "China"]);

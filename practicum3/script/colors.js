@@ -1,10 +1,36 @@
 function Colors()
 {
-	this.country_clear = function(){return "fill:rgb(40,40,40);stroke:rgb(0,0,0)"};
-	this.country_hover = function(){return "fill:rgb(256,256,256);stroke:rgb(0,0,0)"};
-	this.country_selected1 = function(){return "fill:rgb(256,0,0);stroke:rgb(0,0,0)"};
-	this.country_selected2 = function(){return "fill:rgb(256,0,256);stroke:rgb(0,0,0)"};
-	this.country_selected3 = function(){return "fill:rgb(256,256,0);stroke:rgb(0,0,0)"};
+	var base_text_fill = "fill:rgb(256,256,256)";
+	var base_text_stroke = "stroke:rgb(256,256,256)";
+	var base_text_font = "font:10px sans-serif"
+
+	var base_fill = "fill:rgb(40,40,40)";
+	var base_stroke = "stroke:rgb(0,0,0)";
+
+	var hover_fill = "fill:rgb(256,256,256)";
+	var hover_stroke = base_stroke;
+
+	var selection1_fill = "fill:rgb(256,0,0)";
+	var selection1_stroke = "stroke:rgb(256,0,0)";
+	var selection2_fill = "fill:rgb(256,0,256)";
+	var selection2_stroke = "stroke:rgb(256,0,256)";
+	var selection3_fill = "fill:rgb(256,256,0)";
+	var selection3_stroke = "stroke:rgb(256,256,0)";
+
+	this.country_clear = function(){return base_fill + ";" + base_stroke};
+	this.country_hover = function(){return hover_fill+";"+hover_stroke};
+
+	this.country_selected1 = function(){return selection1_fill+";"+base_stroke};
+	this.country_selected2 = function(){return selection2_fill+";"+base_stroke};
+	this.country_selected3 = function(){return selection3_fill+";"+base_stroke};
+
+	this.country_selected1_bar = function(){return selection1_fill+";"+selection1_stroke};
+	this.country_selected2_bar = function(){return selection2_fill+";"+selection2_stroke};
+	this.country_selected3_bar = function(){return selection3_fill+";"+selection3_stroke};
+
+	this.text = function(){return base_text_fill+";"+base_text_font};
+	this.line = function(){return base_text_stroke};
+
 
 	this.gradient = function(red,green,blue,min,max,data)
 	{

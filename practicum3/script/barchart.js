@@ -57,6 +57,7 @@ function Barchart(id, indicator, data) {
         //d3.select(id).selectAll("svg").remove();
         svg.remove();
     }
+
         svg = d3.select("#barcharts").append("svg")
 
         if (layer)
@@ -70,11 +71,13 @@ function Barchart(id, indicator, data) {
 
 
         var margin = {top: 40, right: 10, bottom: 20, left: 10},
-            width = 300 - margin.left - margin.right,
+            width = 800 - margin.left - margin.right,
             height = 150 - margin.top - margin.bottom;
 
         var x = d3.scale.ordinal()
-            .domain(d3.range(m))
+            //.domain(d3.range(m))
+            .domain(d3.range(1960, 2012))
+            // .attr("style",colors.text)
             .rangeRoundBands([0, width], .08);
             //.rangeRoundBands([0, width], 3);
 
@@ -97,9 +100,9 @@ function Barchart(id, indicator, data) {
 
         var xAxis = d3.svg.axis()
             .scale(x)
-            //.scale(10)
             .tickSize(0)
             .tickPadding(6)
+            // .tickFormat(d3.format(",.0f"))
             .orient("bottom");
 
         var yAxis = d3.svg.axis()
@@ -120,11 +123,11 @@ function Barchart(id, indicator, data) {
             //.style("fill", function(d, i) { return color(i); })
             .attr("style", function(d,i){
                 if(i==0)
-                    colors.country_selected1();
+                    return colors.country_selected1();
                 if(i==1)
-                    colors.country_selected2();
+                    return colors.country_selected2();
                 if(i==2)
-                    colors.country_selected3();
+                    return colors.country_selected3();
             });
 
         var rect = layer.selectAll("rect")
@@ -142,11 +145,15 @@ function Barchart(id, indicator, data) {
 
         svg.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis);
+            .attr("transform", "translate(0," + (height+15) + ")")
+            .attr("style",colors.text)
+            .call(xAxis).selectAll("g").attr("transform",function(){
+                return $(this).attr("transform")+" rotate(-90)";
+            });
 
         svg.append("g")
             .attr("class", "y axis")
+            .attr("style",colors.text)
             .call(yAxis)
           .append("text")
             .attr("transform", "rotate(-90)")
@@ -154,7 +161,17 @@ function Barchart(id, indicator, data) {
             .attr("dy", ".71em")
             .style("text-anchor", "end")
             .text(indicator);
+
+
+            svg.append("svg:line")
+                .attr("x1",20)
+                .attr("y1",height)
+                .attr("x2",width)
+                .attr("y2",height)
+                .attr("style", colors.line);
     }
+
+
 
     //updateCountries([]);
 
