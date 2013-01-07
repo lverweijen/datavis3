@@ -33,10 +33,10 @@ function Map(id) {
         .attr("n",function(d,i){
             return json.features[i].properties.name;
         })
-        .attr("style",function(){
+        .attr("map",function(){
           return colors.country_clear();
         })
-        .attr("map","style")    
+        .attr("style","map")    
           .attr("d", path)
           .on("click", click)
           .on("mouseover", selectLand)

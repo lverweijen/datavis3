@@ -6,7 +6,7 @@ var selected_country 		= "Netherlands";
 var selection_1				= null;
 var selection_2				= null;
 var selection_3				= null;
-var coeficients				=["10","10","10","10","10"];
+var coeficients				=["10","10","10","10","10","10","10"];
 
 //GLOBAL OBJECTS
 var colors = new Colors();
@@ -98,6 +98,17 @@ function updateSlider5(value)
 	coeficients[4]=value;
 	computeQOL();
 }
+function updateSlider6(value)
+{
+	coeficients[5]=value;
+	computeQOL();
+}
+function updateSlider7(value)
+{
+	coeficients[6]=value;
+	computeQOL();
+}
+
 
 updateSlider(1998);
 
