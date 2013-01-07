@@ -1,7 +1,7 @@
 // Zo maak je een class in javascript
 function Map(id) {
-    var width = 800,
-        height = 400,
+    var width = colors.map_dim()[0],
+        height = colors.map_dim()[1],
         centered;
 
     var projection = d3.geo.equirectangular()
@@ -15,11 +15,11 @@ function Map(id) {
         .attr("width", width)
         .attr("height", height);
 
-    svg.append("rect")
-        .attr("class", "background")
-        .attr("width", width)
-        .attr("height", height)
-        .on("click", click);
+    // svg.append("rect")
+    //     .attr("class", "background")
+    //     .attr("width", width)
+    //     .attr("height", height)
+    //     .on("click", click);
 
     var g = svg.append("g")
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")

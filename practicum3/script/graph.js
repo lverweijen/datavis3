@@ -49,7 +49,7 @@ function Graph(id) {
             svg.data([]).exit().remove();
 
         var margin = {top: 20, right: 80, bottom: 30, left: 50},
-            width = 800 - margin.left - margin.right,
+            width = colors.map_dim()[0] - margin.left - margin.right,
             height = 400 - margin.top - margin.bottom;
 
         //var parseDate = d3.time.format("%Y%m%d").parse;

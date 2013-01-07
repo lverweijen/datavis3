@@ -1,18 +1,25 @@
 /*Nieuw*/
 
 body {
-    background-color: black;
+    background-color: rgb(0,0,0);
     color: white;
 }
 
-#barcharts.visualize {
-   color: rgb(256,256,256);
-
-    background-color: black;
+#map {
+  background-color: rgb(20,20,20);
 }
 
-#graph.visualize {
-    background-color: rgb(0, 0, 0);
+#globe {
+  background-color: rgb(20,20,20);
+
+}
+
+#barchart {
+    background-color: rgb(20,20,20);
+}
+
+#graph {
+    background-color: rgb(20,20,20);
 }
 
 .select1 {

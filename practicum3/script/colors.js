@@ -5,7 +5,7 @@ function Colors()
 	var base_text_font = "font:10px sans-serif"
 
 	var base_fill = "fill:rgb(40,40,40)";
-	var base_stroke = "stroke:rgb(0,0,0)";
+	var base_stroke = "stroke:rgb(20,20,20)";
 
 	var hover_fill = "fill:rgb(256,256,256)";
 	var hover_stroke = base_stroke;
@@ -16,6 +16,14 @@ function Colors()
 	var selection2_stroke = "stroke:rgb(256,0,256)";
 	var selection3_fill = "fill:rgb(256,256,0)";
 	var selection3_stroke = "stroke:rgb(256,256,0)";
+
+	var devider	= 0.5;
+	var window_width = window.innerWidth;
+	var window_height = window.innerHeight;
+
+
+	this.map_dim = function(){return [window_width*devider,(window_width*devider)/2];};
+	this.azimuth_dim = function(){return [window_width*(1-devider),(window_width*devider)/2];};
 
 	this.country_clear = function(){return base_fill + ";" + base_stroke};
 	this.country_hover = function(){return hover_fill+";"+hover_stroke};

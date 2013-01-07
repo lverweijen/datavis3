@@ -1,5 +1,5 @@
 function Barchart(id, indicator, data) {
-
+    console.log(id);    
     function countries(countries) {
         var stack = d3.layout.stack(),
         layers = stack(countries.map(function(country){
@@ -71,7 +71,7 @@ function Barchart(id, indicator, data) {
 
 
         var margin = {top: 40, right: 10, bottom: 20, left: 10},
-            width = 800 - margin.left - margin.right,
+            width = colors.map_dim()[0] - margin.left - margin.right,
             height = 150 - margin.top - margin.bottom;
 
         var x = d3.scale.ordinal()
@@ -156,7 +156,7 @@ function Barchart(id, indicator, data) {
             .attr("style",colors.text)
             .call(yAxis)
           .append("text")
-            .attr("transform", "rotate(-90)")
+            .attr("transform", "translate("+ width+"," + (height+30) +") rotate(0)")
             .attr("y", 6)
             .attr("dy", ".71em")
             .style("text-anchor", "end")

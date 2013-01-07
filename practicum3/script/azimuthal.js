@@ -4,9 +4,9 @@ function Azimuthal(id, projection, mode) {
 
     this.projection = d3.geo.azimuthal()
         .mode(mode || "orthographic")
-        .scale(200)
+        .scale(colors.azimuth_dim()[0]/3)
             .origin([25,35])
-            .translate([200,200]);
+            .translate([colors.azimuth_dim()[0]/2,colors.azimuth_dim()[1]/2]);
 
     this.circle = d3.geo.greatCircle()
         .origin(this.projection.origin());
@@ -15,8 +15,8 @@ function Azimuthal(id, projection, mode) {
         .projection(this.projection);
 
     var svg = d3.select(id).append("svg:svg")
-        .attr("width", 400)
-        .attr("height", 400);
+        .attr("width", colors.azimuth_dim()[0])
+        .attr("height", colors.azimuth_dim()[1]);
 
     d3.json("data/world-countries.json", function(collection) {
         feature = svg.selectAll("path")
@@ -27,11 +27,11 @@ function Azimuthal(id, projection, mode) {
         })
         .attr("style",function(d,i)
         {
-            return "fill:rgb(40,40,40);stroke:rgb(0,0,0)";
+            return colors.country_clear();
         })
         .attr("map",function(d,i)
         {
-            return "fill:rgb(40,40,40);stroke:rgb(0,0,0)";
+            return colors.country_clear();
         })      
         .attr("d", clip)
         .on("click",setSelection)
