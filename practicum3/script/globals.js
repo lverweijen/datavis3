@@ -7,6 +7,7 @@ var selection_1				= null;
 var selection_2				= null;
 var selection_3				= null;
 var coeficients				=["10","10","10","10","10","10","10"];
+var quality_of_life			= {};
 
 //GLOBAL OBJECTS
 var colors = new Colors();
@@ -28,16 +29,37 @@ $(document).ready(function(){
         map 		= new Map("#map");
         azimuthal 	= new Azimuthal("#globe", 160, "ortographic");
         barcharts 	= new Barcharts("#barcharts");
-        graph 	        = new Graph("#graph");         
-    });
+        graph 	        = new Graph("#graph");    
 
-    d3.csv("/data/datasets/life_expectancy_test.csv", function(csv)
-        {
-            csv.forEach(function(row)
-                {
-                    life_expectancyy_data[row["Country Name"]] = row;
-                });
-        });
+         var a = window.data["CO2 emissions (metric tons per capita)"];
+         var b = window.data["Death rate, crude (per 1,000 people)"];
+         var c = window.data["GDP per capita (current US$)"];
+         var d = window.data["GDP per capita growth (annual %)"];
+         var e = window.data["Life expectancy at birth, total (years)"];
+         var f = window.data["Mortality rate, infant (per 1,000 live births)"];
+         var g = window.data["Unemployment, total (% of total labor force)"];
+
+         var countries = Object.keys(a);
+         var container = {};
+         for(var i=0;i<countries.length;i++)
+         {
+         	var country = countries[i];
+         	var collection = {};
+	         for(year=1960;year<=2012;year++)
+	         {
+	         	collection[year]= 	
+	         		a[country][""+year]*coeficients[0]+
+	         		b[country][""+year]*coeficients[1]+
+	         		c[country][""+year]*coeficients[2]+
+	         		d[country][""+year]*coeficients[3]+
+	    			e[country][""+year]*coeficients[4]+
+					f[country][""+year]*coeficients[5]+
+					g[country][""+year]*coeficients[6];
+	         }
+	         container[country]=collection;
+         }
+         quality_of_life=container;
+    });
 });
 
 function setSelection(country) {
@@ -53,19 +75,13 @@ function updateSlider(value)
 	year = value;
 	yearDisp.html(""+ year);
 
-	//Load data
-	d3.csv("/data/datasets/life_expectancy_test.csv", function(csv)
-	{
-		csv.forEach(function(row)
-		{
-			life_expectancy[row["Country Name"]] = row[""+year];
-		});
-	});
+	var output = {};
+	var countries = Object.keys(quality_of_life);
+	for(var i=0;i<countries.length;i++)
+		output[countries[i]] = quality_of_life[countries[i]][year];
 
-	//refresh stuff
-        map.loadMap(life_expectancy);
-        azimuthal.loadMap(life_expectancy);
-	// graph 		= new Graph("#graph");
+    map.loadMap(output);
+    azimuthal.loadMap(output);
 };
 
 function computeQOL()
@@ -109,9 +125,7 @@ function updateSlider7(value)
 	computeQOL();
 }
 
-
 updateSlider(1998);
-
 
 function gradient(red, green, blue, min, max, data)
 {
