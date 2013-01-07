@@ -186,4 +186,19 @@ function Graph(id) {
     //this.selectCountry("United States");
     //this.selectCountry("Italy");
     updateCountries();
+
+    var table = d3.select("#sliders");
+
+    for (var indicator in window.data) {
+        console.log("creating barchart for indicator");
+        //table.append("text").attr("mama", "joe");
+        //table.append("<p>hello</p>");
+        table.append("p").text(indicator);
+        table.append("circle");
+    }
 }
+
+
+
+
+
