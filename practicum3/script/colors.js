@@ -4,8 +4,10 @@ function Colors()
 	var base_text_stroke = "stroke:rgb(256,256,256)";
 	var base_text_font = "font:10px sans-serif"
 
+	var globe_fill = "fill:rgb(20,20,30)";
+	var globe_stroke = "stroke:rgb(15,15,15)"; 
 	var base_fill = "fill:rgb(40,40,40)";
-	var base_stroke = "stroke:rgb(20,20,20)";
+	var base_stroke = "stroke:rgb(20,20,30)";
 
 	var hover_fill = "fill:rgb(256,256,256)";
 	var hover_stroke = base_stroke;
@@ -39,6 +41,8 @@ function Colors()
 	this.text = function(){return base_text_fill+";"+base_text_font};
 	this.line = function(){return base_text_stroke};
 
+	this.globe = function(){return globe_fill+";"+globe_stroke }
+
 
 	this.gradient = function(red,green,blue,min,max,data)
 	{
@@ -49,9 +53,9 @@ function Colors()
 			r = grad+Math.round(diff*red);
 			g = grad+Math.round(diff*green);
 			b = grad+Math.round(diff*blue);	
-			base = "fill:rgb("+grad+","+grad+","+grad+");stroke:rgb(0,0,0)";
-			color = "fill:rgb("+r+","+g+","+b+");stroke:rgb(0,0,0)";
-		    return (!isNaN(data)) ? color : base;
+			base = "fill:rgb("+grad+","+grad+","+grad+");";+base_stroke
+			color = "fill:rgb("+r+","+g+","+b+");"+base_stroke;
+		    return (!isNaN(data)) ? color : colors.country_clear();
 	}
 
 }

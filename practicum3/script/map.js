@@ -63,7 +63,7 @@ function Map(id) {
         {
           $(i).attr("map",function(){
             var value = data[$(i).attr("n")];
-            return colors.gradient(1,0.35,0,min,max,value);
+            return colors.gradient(0,1,0,min,max,value);
           });
           $(i).attr("style",$(i).attr("map"));
         });

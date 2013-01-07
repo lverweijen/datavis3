@@ -3,10 +3,17 @@
 body {
     background-color: rgb(0,0,0);
     color: white;
+  font:15px sans-serif;
+}
+
+h1 {
+  color: white;
+  font:30px sans-serif;
+  text-align: center
 }
 
 #map {
-  background-color: rgb(20,20,20);
+  background-color: rgb(20,20,30);
 }
 
 #globe {
