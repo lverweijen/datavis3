@@ -24,7 +24,7 @@ function Graph(id) {
     };
 
     // Vul hier je eigen formule in.
-    // TODO: geval afhandelen dat country niet bestaat
+    // geval afhandelen dat country niet bestaat
     var formula = function(country) {
         var countryData = window.data["Life expectancy at birth, total (years)"][country];
 
@@ -73,8 +73,6 @@ function Graph(id) {
             .tickFormat(d3.format("04d"))
             .scale(x)
             .orient("bottom");
-
-        window.xAxis = xAxis;
 
         var yAxis = d3.svg.axis()
             yAxis
