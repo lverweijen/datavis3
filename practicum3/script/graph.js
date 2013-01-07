@@ -5,6 +5,8 @@ function Graph(id) {
     var selectedCountries = [];
     var styles = new Object();
 
+    var parseDate = d3.time.format("%Y%m%d").parse;
+
     this.selectCountry = function(country, cssclass) {
         //if (data[country]) {
             selectedCountries.push(country);
@@ -52,7 +54,8 @@ function Graph(id) {
 
         //var parseDate = d3.time.format("%Y%m%d").parse;
 
-        var x = d3.time.scale()
+        //var x = d3.time.scale()
+        var x = d3.scale.linear()
             .range([0, width]);
 
         var y = d3.scale.linear()
@@ -99,6 +102,7 @@ function Graph(id) {
         
         //x.domain([1, 2, 3, 4, 5]);
         x.domain([1960, 2012]);
+        //x.range([1960, 2012]);
         //x.domain(d3.range(1960, 2012));
         //x.domain(d3.extent(data, function(d) { return d.date; }));
 
