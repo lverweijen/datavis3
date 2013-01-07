@@ -30,43 +30,47 @@ $(document).ready(function(){
         azimuthal 	= new Azimuthal("#globe", 160, "ortographic");
         barcharts 	= new Barcharts("#barcharts");
         graph 	        = new Graph("#graph");    
-
-         var a = window.data["CO2 emissions (metric tons per capita)"];
-         var b = window.data["Death rate, crude (per 1,000 people)"];
-         var c = window.data["GDP per capita (current US$)"];
-         var d = window.data["GDP per capita growth (annual %)"];
-         var e = window.data["Life expectancy at birth, total (years)"];
-         var f = window.data["Mortality rate, infant (per 1,000 live births)"];
-         var g = window.data["Unemployment, total (% of total labor force)"];
-
-         var countries = Object.keys(a);
-         var container = {};
-         for(var i=0;i<countries.length;i++)
-         {
-         	var country = countries[i];
-         	var collection = {};
-	         for(year=1960;year<=2012;year++)
-	         {
-	         	collection[year]= 	
-	         		a[country][""+year]*coeficients[0]+
-	         		b[country][""+year]*coeficients[1]+
-	         		c[country][""+year]*coeficients[2]+
-	         		d[country][""+year]*coeficients[3]+
-	    			e[country][""+year]*coeficients[4]+
-					f[country][""+year]*coeficients[5]+
-					g[country][""+year]*coeficients[6];
-	         }
-	         container[country]=collection;
-         }
-         quality_of_life=container;
     });
+    calcQOL();
 });
 
 function setSelection(country) {
 	
 }
 
+function calcQOL()
+{
+	console.log("TTTRAAACCCCEEE");
+	console.log(window.	data);
+	var a = data["CO2 emissions (metric tons per capita)"];
+	var b = data["Death rate, crude (per 1,000 people)"];
+	var c = data["GDP per capita (current US$)"];
+	var d = data["GDP per capita growth (annual %)"];
+	var e = data["Life expectancy at birth, total (years)"];
+	var f = data["Mortality rate, infant (per 1,000 live births)"];
+	var g = data["Unemployment, total (% of total labor force)"];
 
+	var countries = Object.keys(a);
+	var container = {};
+	for(var i=0;i<countries.length;i++)
+	{
+		var country = countries[i];
+		var collection = {};
+	 for(year=1960;year<=2012;year++)
+	 {
+	 	collection[year]= 	
+	 		a[country][""+year]*coeficients[0]/10+
+	 		b[country][""+year]*coeficients[1]/10+
+	 		c[country][""+year]*coeficients[2]/10+
+	 		d[country][""+year]*coeficients[3]/10+
+			e[country][""+year]*coeficients[4]/10+
+			f[country][""+year]*coeficients[5]/10+
+			g[country][""+year]*coeficients[6]/10;
+	 }
+	 container[country]=collection;
+	}
+	quality_of_life=container;
+}
 
 
 function updateSlider(value)
@@ -74,6 +78,8 @@ function updateSlider(value)
 	var yearDisp = $('#yearDisp');
 	year = value;
 	yearDisp.html(""+ year);
+
+
 
 	var output = {};
 	var countries = Object.keys(quality_of_life);
