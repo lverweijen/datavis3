@@ -1,11 +1,18 @@
 import csv
+#import os.path
 
 indicators = {
         "Life expectancy at birth, total (years)",
-        "GDP (current US$)"
+        "GDP (current US$)",
+        "CO2 emissions (kg per 2000 US$ of GDP)",
+        "Broad money (current LCU)",
+        "Children out of school, primary"
 }
 
-with open("../WDI_GDF_Data.csv", "rb") as file_in:
+# polution?
+
+#with open(os.path(["..", "WDI_GDF_Data.csv"]), "rb") as file_in:
+with open("WDI_GDF_Data.csv", "rb") as file_in:
     csv_reader = csv.reader(file_in)
     header = csv_reader.next()
     code = header.index("Indicator Name")
