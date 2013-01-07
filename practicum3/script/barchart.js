@@ -38,8 +38,7 @@ function Barchart(id, indicator, data) {
         delete styles[country];
         var index = selectedCountries.indexOf(country);
         if (index != -1)
-            selectedCountries.pop(index)
-        //updateCountries(selectedCountries);
+            selectedCountries.splice(index, 1);
     };
 
     this.clear = function() {

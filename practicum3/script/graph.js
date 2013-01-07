@@ -12,7 +12,6 @@ function Graph(id) {
             selectedCountries.push(country);
             styles[country] = cssclass;
             updateCountries(selectedCountries);
-            console.log(selectedCountries );
         //} else {
             //console.log("I dunna bout " + country);
         //}
@@ -21,8 +20,11 @@ function Graph(id) {
     this.deselectCountry = function(country) {
         delete styles[country];
         var index = selectedCountries.indexOf(country);
+        console.log("removing " + country);
         if (index != -1)
-            selectedCountries.pop(index)
+            selectedCountries.splice(index, 1);
+        if (index == -1)
+            console.log("problem removing " + country);
         updateCountries(selectedCountries);
     };
 
@@ -45,8 +47,13 @@ function Graph(id) {
     var svg;
 
     function updateCountries(countries) {
-        if(svg)
-            svg.data([]).exit().remove();
+        console.log(selectedCountries );
+        countries = selectedCountries;
+        //if(svg)
+            //svg.data([]).exit().remove();
+
+        if (svg)
+            svg.remove();
 
         var margin = {top: 20, right: 80, bottom: 30, left: 50},
             width = 800 - margin.left - margin.right,
