@@ -116,7 +116,16 @@ function Barchart(id, indicator, data) {
             .data(layers)
           .enter().append("g")
             .attr("class", "layer")
-            .style("fill", function(d, i) { return color(i); });
+            //.style("fill", function(d, i) { return color(i); });
+            //.style("fill", function(d, i) { return color(i); })
+            .attr("style", function(d,i){
+                if(i==0)
+                    colors.country_selected1();
+                if(i==1)
+                    colors.country_selected2();
+                if(i==2)
+                    colors.country_selected3();
+            });
 
         var rect = layer.selectAll("rect")
             .data(function(d) { return d; })

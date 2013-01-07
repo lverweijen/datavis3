@@ -30,7 +30,7 @@ function Graph(id) {
         var countryData = window.data["Life expectancy at birth, total (years)"][country];
 
         var paired = [];
-        for (var year = 1960; year <= 2012; year++) {
+        for (var year = 1960; year <= 2010; year++) {
             if (!countryData || isNaN(countryData[year]))
                 value = 0;
             else
@@ -61,8 +61,7 @@ function Graph(id) {
         var color = d3.scale.ordinal().range(["red", "purple", "yellow"]);
 
         var xAxis = d3.svg.axis()
-
-            xAxis
+            //xAxis
             .scale(x)
             .orient("bottom");
 
@@ -98,7 +97,10 @@ function Graph(id) {
             };
         });
         
-        x.domain(d3.range(1960, 2012));
+        //x.domain([1, 2, 3, 4, 5]);
+        x.domain([1960, 2012]);
+        //x.domain(d3.range(1960, 2012));
+        //x.domain(d3.extent(data, function(d) { return d.date; }));
 
         console.log("test3");
         console.log(cities);
