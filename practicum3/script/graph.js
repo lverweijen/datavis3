@@ -152,7 +152,10 @@ function Graph(id) {
         city.append("path")
             .attr("class", "line")
             .attr("d", function(d) { return line(d.values); })
-            .style("stroke", function(d) { return color(d.name); });
+            //.style("stroke", function(d) { return color(d.name); });
+            .style("stroke", function(d) { 
+                return colors.selectColor(2 - (countries.indexOf(d.name) + 3 - countries.length));
+            });
 
         city.append("text")
             .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })

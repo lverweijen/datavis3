@@ -1,4 +1,8 @@
 function Barchart(id, indicator, data) {
+
+    //cheater = new Object();
+
+
     console.log(id);    
     function countries(countries) {
         var stack = d3.layout.stack(),
@@ -9,6 +13,9 @@ function Barchart(id, indicator, data) {
             for (var year = 1960; year <= 2012; year++) {
                 paired.push({x: year, y: isNaN(countryData[year]) ? 0 : +countryData[year]});
             }
+            paired.name = country;
+
+            //cheater[country] == paired;
 
             return paired;
 
@@ -126,15 +133,15 @@ function Barchart(id, indicator, data) {
             .data(layers)
           .enter().append("g")
             .attr("class", "layer")
-            //.style("fill", function(d, i) { return color(i); });
-            //.style("fill", function(d, i) { return color(i); })
+            //.style("stroke", colors.base_stroke)
+            //.style("fill", function(d,i){
+                //return colors.selectColor(2 - (newcountries.indexOf(d.name) + 3 - newcountries.length));
+            //});
+            // fucking lelijk
             .attr("style", function(d,i){
-                if(i==0)
-                    return colors.country_selected1();
-                if(i==1)
-                    return colors.country_selected2();
-                if(i==2)
-                    return colors.country_selected3();
+                return [colors.country_selected3(), colors.country_selected2(),
+                colors.country_selected1()][newcountries.indexOf(d.name) + 3 -
+                newcountries.length];
             });
 
         var rect = layer.selectAll("rect")

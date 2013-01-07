@@ -1,5 +1,6 @@
 function Colors()
 {
+
 	var base_text_fill = "fill:rgb(256,256,256)";
 	var base_text_stroke = "stroke:rgb(256,256,256)";
 	var base_text_font = "font:10px sans-serif"
@@ -21,6 +22,15 @@ function Colors()
 	var window_width = window.innerWidth;
 	var window_height = window.innerHeight;
 
+        // wtf is this shit? doe gewoon
+        this.selectColor = function(n) {
+            switch(n) {
+                case 0: return "rgb(256, 0, 0)";
+                case 1: return "rgb(256, 0, 256)";
+                case 2: return "rgb(256, 256, 0)";
+            }
+        }
+        this.base_stroke = base_stroke;
 
 	this.map_dim = function(){return [window_width*devider,(window_width*devider)/2];};
 	this.azimuth_dim = function(){return [window_width*(1-devider),(window_width*devider)/2];};
