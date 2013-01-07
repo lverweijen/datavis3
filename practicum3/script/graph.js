@@ -5,8 +5,6 @@ function Graph(id) {
     var selectedCountries = [];
     var styles = new Object();
 
-    var parseDate = d3.time.format("%Y%m%d").parse;
-
     this.selectCountry = function(country, cssclass) {
         //if (data[country]) {
             selectedCountries.push(country);
@@ -45,7 +43,7 @@ function Graph(id) {
 
     var svg;
 
-    function updateCountries(countries) {
+    function updateCountries() {
         console.log(selectedCountries );
         var countries = selectedCountries;
 
@@ -62,8 +60,6 @@ function Graph(id) {
             width = colors.map_dim()[0] - margin.left - margin.right,
             height = 400 - margin.top - margin.bottom;
 
-        //var parseDate = d3.time.format("%Y%m%d").parse;
-
         //var x = d3.time.scale()
         var x = d3.scale.linear()
             .range([0, width]);
@@ -74,9 +70,11 @@ function Graph(id) {
         var color = d3.scale.ordinal().range(["red", "purple", "yellow"]);
 
         var xAxis = d3.svg.axis()
-            //xAxis
+            .tickFormat(d3.format("04d"))
             .scale(x)
             .orient("bottom");
+
+        window.xAxis = xAxis;
 
         var yAxis = d3.svg.axis()
             yAxis
