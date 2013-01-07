@@ -18,7 +18,7 @@ with open("WDI_GDF_Data.csv", "rb") as file_in:
     code = header.index("Indicator Name")
     data = [line for line in csv_reader if line[code] in indicators]
 
-with open("simplified.csv", "wb") as file_out:
+with open("../simplified.csv", "wb") as file_out:
     csv_writer = csv.writer(file_out)
     csv_writer.writerow(header)
     csv_writer.writerows(data)

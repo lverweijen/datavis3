@@ -20,11 +20,8 @@ function Graph(id) {
     this.deselectCountry = function(country) {
         delete styles[country];
         var index = selectedCountries.indexOf(country);
-        console.log("removing " + country);
         if (index != -1)
             selectedCountries.splice(index, 1);
-        if (index == -1)
-            console.log("problem removing " + country);
         updateCountries(selectedCountries);
     };
 
@@ -39,7 +36,7 @@ function Graph(id) {
             //if (!countryData || isNaN(countryData[year]))
             if (!countryData)
                 value = 0;
-            else if(!isNaN(countryData[year]))
+            else if(countryData[year] && !isNaN(countryData[year]))
                 value = +countryData[year];
             paired.push({date: +year, temperature: value});
         }
@@ -186,6 +183,6 @@ function Graph(id) {
     //updateCountries(["United States", "United Kingdom", "China"]);
     //updateCountries(["United States"]);
     //updateCountries(["United States", "United Kingdom", "China"]);
-    //this.selectCountry("United States");
+    this.selectCountry("United States");
     //this.selectCountry("Italy");
 }
