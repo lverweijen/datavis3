@@ -2,11 +2,14 @@ import csv
 #import os.path
 
 indicators = {
+        "Access to electricity (% of population)",
         "Life expectancy at birth, total (years)",
-        "GDP (current US$)",
+        "Death rate, crude (per 1,000 people)",
+        "GDP per capita (current US$)",
+        "GDP per capita growth (annual %)",
         "CO2 emissions (kg per 2000 US$ of GDP)",
-        "Broad money (current LCU)",
-        "Children out of school, primary"
+        #"Broad money (current LCU)", # wat is dit eigenlijk?
+        "Children out of school, primary",
 }
 
 # polution?

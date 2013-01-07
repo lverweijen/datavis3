@@ -47,7 +47,11 @@ function Graph(id) {
 
     function updateCountries(countries) {
         console.log(selectedCountries );
-        countries = selectedCountries;
+        var countries = selectedCountries;
+
+        if(!selectedCountries.length)
+            countries = ["United States"];
+
         //if(svg)
             //svg.data([]).exit().remove();
 
@@ -183,6 +187,6 @@ function Graph(id) {
     //updateCountries(["United States", "United Kingdom", "China"]);
     //updateCountries(["United States"]);
     //updateCountries(["United States", "United Kingdom", "China"]);
-    this.selectCountry("United States");
+    //this.selectCountry("United States");
     //this.selectCountry("Italy");
 }

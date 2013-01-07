@@ -49,6 +49,10 @@ function Barchart(id, indicator, data) {
 
     this.updateCountries = function() {
         newcountries = selectedCountries;
+
+        if(!selectedCountries.length)
+            newcountries = ["United States"];
+
         // Sommige delen van deze functie kunnen misschien ook hierboven gedeclareerd worden.
         // Ik weet alleen niet welke.
 
