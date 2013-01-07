@@ -5,8 +5,6 @@ function Graph(id) {
     var selectedCountries = [];
     var styles = new Object();
 
-    var parseDate = d3.time.format("%Y%m%d").parse;
-
     this.selectCountry = function(country, cssclass) {
         //if (data[country]) {
             selectedCountries.push(country);
@@ -26,7 +24,7 @@ function Graph(id) {
     };
 
     // Vul hier je eigen formule in.
-    // TODO: geval afhandelen dat country niet bestaat
+    // geval afhandelen dat country niet bestaat
     var formula = function(country) {
         var countryData = window.data["Life expectancy at birth, total (years)"][country];
 
@@ -45,7 +43,7 @@ function Graph(id) {
 
     var svg;
 
-    function updateCountries(countries) {
+    function updateCountries() {
         console.log(selectedCountries );
         var countries = selectedCountries;
 
@@ -62,8 +60,6 @@ function Graph(id) {
             width = colors.map_dim()[0] - margin.left - margin.right,
             height = 400 - margin.top - margin.bottom;
 
-        //var parseDate = d3.time.format("%Y%m%d").parse;
-
         //var x = d3.time.scale()
         var x = d3.scale.linear()
             .range([0, width]);
@@ -74,7 +70,7 @@ function Graph(id) {
         var color = d3.scale.ordinal().range(["red", "purple", "yellow"]);
 
         var xAxis = d3.svg.axis()
-            //xAxis
+            .tickFormat(d3.format("04d"))
             .scale(x)
             .orient("bottom");
 
@@ -151,6 +147,7 @@ function Graph(id) {
             .enter().append("g")
             .attr("style",colors.text)
             .attr("class", "city");
+                    //}
 
         city.append("path")
             .attr("class", "line")
@@ -175,7 +172,6 @@ function Graph(id) {
             .attr("x2",width)
             .attr("y2",height)
             .attr("style", colors.line);
-
             svg.append("svg:line")
                 .attr("x1",0)
                 .attr("y1",0)
@@ -189,4 +185,20 @@ function Graph(id) {
     //updateCountries(["United States", "United Kingdom", "China"]);
     //this.selectCountry("United States");
     //this.selectCountry("Italy");
+    updateCountries();
+
+    var table = d3.select("#sliders");
+
+    for (var indicator in window.data) {
+        console.log("creating barchart for indicator");
+        //table.append("text").attr("mama", "joe");
+        //table.append("<p>hello</p>");
+        table.append("p").text(indicator);
+        table.append("circle");
+    }
 }
+
+
+
+
+
