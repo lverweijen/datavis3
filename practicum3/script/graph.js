@@ -26,7 +26,7 @@ function Graph(id) {
     // Vul hier je eigen formule in.
     // geval afhandelen dat country niet bestaat
     var formula = function(country) {
-        var countryData = window.data["Life expectancy at birth, total (years)"][country];
+        var countryData = quality_of_life[country];//window.data["Life expectancy at birth, total (years)"][country];
 
         var paired = [];
         var value = 0;
