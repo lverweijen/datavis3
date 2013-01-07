@@ -11,6 +11,10 @@ body {
     background-color: black;
 }
 
+.barchart {
+    background-color: grey;
+}
+
 #graph.visualize {
     background-color: rgb(0, 0, 0);
 }

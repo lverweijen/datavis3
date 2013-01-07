@@ -34,10 +34,12 @@ function Graph(id) {
         var countryData = window.data["Life expectancy at birth, total (years)"][country];
 
         var paired = [];
-        for (var year = 1960; year <= 2010; year++) {
-            if (!countryData || isNaN(countryData[year]))
+        var value = 0;
+        for (var year = 1960; year <= 2012; year++) {
+            //if (!countryData || isNaN(countryData[year]))
+            if (!countryData)
                 value = 0;
-            else
+            else if(!isNaN(countryData[year]))
                 value = +countryData[year];
             paired.push({date: +year, temperature: value});
         }
