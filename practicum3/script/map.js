@@ -33,17 +33,10 @@ function Map(id) {
         .attr("n",function(d,i){
             return json.features[i].properties.name;
         })
-        .style("fill",function(d,i)
-        {
-            return "rgb(40,40,40)";
+        .attr("style",function(){
+          return colors.country_clear();
         })
-        .style("stroke",function(d,i)
-        {
-            return "rgb(0,0,0)";
-        }) 
-        .attr("map",function(){
-          return "fill:rgb(40,40,40);stroke:rgb(0,0,0)"
-        })    
+        .attr("map","style")    
           .attr("d", path)
           .on("click", click)
           .on("mouseover", selectLand)
@@ -70,8 +63,7 @@ function Map(id) {
         {
           $(i).attr("map",function(){
             var value = data[$(i).attr("n")];
-            var color = gradient(1,0.35,0,min,max,value);
-            return "fill: " + color + ";stroke: rgb(0,0,0)";
+            return colors.gradient(1,0.35,0,min,max,value);
           });
           $(i).attr("style",$(i).attr("map"));
         });
@@ -79,11 +71,11 @@ function Map(id) {
         list.forEach(function(i)
         {
           if(selection_1 != undefined && $(i).attr("n")==selection_1.attr("n"))
-            $(i).attr("style","fill:rgb(256,0,0);stroke:rgb(0,0,0)");
+            $(i).attr("style",colors.country_selected1());
           if(selection_2 != undefined && $(i).attr("n")==selection_2.attr("n"))
-            $(i).attr("style","fill:rgb(256,0,256);stroke:rgb(0,0,0)");
+            $(i).attr("style",colors.country_selected2());
           if(selection_3 != undefined && $(i).attr("n")==selection_3.attr("n"))
-            $(i).attr("style","fill:rgb(256,256,0);stroke:rgb(0,0,0)");
+            $(i).attr("style",colors.country_selected3());
         });
     }
 
@@ -127,11 +119,11 @@ function Map(id) {
           list.forEach(function(i)
           {
             if(selection_1 != undefined && $(i).attr("n")==selection_1.attr("n"))
-              $(i).attr("style","fill:rgb(256,0,0);stroke:rgb(0,0,0)");
+              $(i).attr("style",colors.country_selected1());
             if(selection_2 != undefined && $(i).attr("n")==selection_2.attr("n"))
-              $(i).attr("style","fill:rgb(256,0,256);stroke:rgb(0,0,0)");
+              $(i).attr("style",colors.country_selected2());
             if(selection_3 != undefined && $(i).attr("n")==selection_3.attr("n"))
-              $(i).attr("style","fill:rgb(256,256,0);stroke:rgb(0,0,0)");
+              $(i).attr("style",colors.country_selected3());
           });
     }
 

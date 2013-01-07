@@ -4,8 +4,36 @@
 		"selected_items":
 		[
 			[
+				"sele",
+				"selection_1"
+			],
+			[
 				"select",
-				"selectAll"
+				"selection_3"
+			],
+			[
+				"se",
+				"selection"
+			],
+			[
+				"selec",
+				"selection_1"
+			],
+			[
+				"see",
+				"selection"
+			],
+			[
+				"selection",
+				"selection_3"
+			],
+			[
+				"sec",
+				"selection_1"
+			],
+			[
+				"for",
+				"forEach"
 			],
 			[
 				"life",
@@ -268,6 +296,22 @@
 	"buffers":
 	[
 		{
+			"file": "practicum3/script/azimuthal.js",
+			"settings":
+			{
+				"buffer_size": 4952,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "practicum3/script/map.js",
+			"settings":
+			{
+				"buffer_size": 5564,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "practicum3/index.html",
 			"settings":
 			{
@@ -276,72 +320,10 @@
 			}
 		},
 		{
-			"file": "practicum3/script/azimuthal.js",
-			"settings":
-			{
-				"buffer_size": 3560,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "// Zo maak je een class in javascript\nfunction Map(id) {\n    var width = 800,\n        height = 400,\n        centered;\n\n    var projection = d3.geo.equirectangular()\n        .scale(width)\n        .translate([0, 0]);\n\n    var path = d3.geo.path()\n        .projection(projection);\n\n    var svg = d3.select(id).append(\"svg\")\n        .attr(\"width\", width)\n        .attr(\"height\", height);\n\n    svg.append(\"rect\")\n        .attr(\"class\", \"background\")\n        .attr(\"width\", width)\n        .attr(\"height\", height)\n        .on(\"click\", click);\n\n    var g = svg.append(\"g\")\n        .attr(\"transform\", \"translate(\" + width / 2 + \",\" + height / 2 + \")\")\n      .append(\"g\")\n        .attr(\"id\", \"states\");\n\n    d3.json(\"data/world-countries.json\", function(json) {\n      g.selectAll(\"path\")\n          .data(json.features)\n        .enter().append(\"path\")\n        .attr(\"n\",function(d,i){\n            return json.features[i].properties.name;\n        })\n        .style(\"fill\",function(d,i)\n        {\n            return \"rgb(40,40,40)\";\n        })\n        .style(\"stroke\",function(d,i)\n        {\n            return \"rgb(0,0,0)\";\n        })     \n          .attr(\"d\", path)\n          .on(\"click\", click)\n          .on(\"mouseover\", selectLand)\n          .on(\"mouseout\" , deselectLand);\n    ;\n    });\n\n    this.loadMap = function(data)\n    {\n        var list = g.selectAll(\"path\")[0];\n        \n        var min =  9999;\n        var max = -9999;\n\n        list.forEach(function(i)\n        {\n            var value = data[$(i).attr(\"n\")];\n            if(value>max && !isNaN(value))\n                max=value;\n            if(value<min && !isNaN(value))\n                min=value;\n        });\n\n        list.forEach(function(i)\n        {\n            $(i).attr(\"style\",function(d,index,rr){\n                var value = data[$(i).attr(\"n\")];\n                var color = gradient(1,0.35,0,min,max,value);\n                return \"fill: \" + color + \";stroke: rgb(0,0,0)\";\n            });\n        });\n    }\n\n    this.zoom = function(d)\n    {\n          var x = 0,\n              y = 0,\n              k = 1;\n\n          if (d && centered !== d) {\n            var centroid = path.centroid(d);\n            x = -centroid[0];\n            y = -centroid[1];\n            k = 4;\n            centered = d;\n          } \n          else {\n            centered = null;\n          }\n\n          g.selectAll(\"path\")\n              .classed(\"active\", centered && function(d) { return d === centered; });\n\n          g.transition()\n              .duration(1000)\n              .attr(\"transform\", \"scale(\" + k + \")translate(\" + x + \",\" + y + \")\")\n              .style(\"stroke-width\", 1.5 / k + \"px\");\n    }\n\n\n    function click(d) {\n      var x = 0,\n          y = 0,\n          k = 1;\n\n      if (d && centered !== d) {\n        var centroid = path.centroid(d);\n        x = -centroid[0];\n        y = -centroid[1];\n        k = 4;\n        centered = d;\n      } else {\n        centered = null;\n      }\n\n      g.selectAll(\"path\")\n          .classed(\"active\", centered && function(d) { return d === centered; });\n\n      g.transition()\n          .duration(1000)\n          .attr(\"transform\", \"scale(\" + k + \")translate(\" + x + \",\" + y + \")\")\n          .style(\"stroke-width\", 1.5 / k + \"px\");\n    }\n}\n\n\nfunction AdBox() {\nthis.width = 200;\nthis.height = 60;\nthis.text = 'default ad text';\nthis.prototype.move = function() {\n    console.log(\"hello world\");\n}\nthis.prototype.display = function() {\n// code for display method goes here\n}\n}",
-			"file": "practicum3/script/map.js",
-			"file_size": 3846,
-			"file_write_time": 1357412877000000,
-			"settings":
-			{
-				"buffer_size": 3463,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "practicum3/style.css",
-			"settings":
-			{
-				"buffer_size": 1558,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "practicum3/style.css2",
-			"settings":
-			{
-				"buffer_size": 1599,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "practicum3/script/globals.js",
 			"settings":
 			{
-				"buffer_size": 1553,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "function Graph(id)\n{\n	var data = [3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 7],\n	w = 400,\n	h = 200,\n	margin = 20,\n	y = d3.scale.linear().domain([0, d3.max(data)]).range([0 + margin, h - margin]),\n	x = d3.scale.linear().domain([0, data.length]).range([0 + margin, w - margin])\n\n	var vis = d3.select(id)\n	    .append(\"svg:svg\")\n	    .attr(\"width\", w)\n	    .attr(\"height\", h)\n	 \n	var g = vis.append(\"svg:g\")\n	    .attr(\"transform\", \"translate(0, 200)\");\n\n    var line = d3.svg.line()\n        .x(function(d,i) { return x(i); })\n        .y(function(d) { return -1 * y(d); })\n\n       g.append(\"svg:path\").attr(\"d\", line(data));\n}",
-			"file": "practicum3/script/graph.js",
-			"file_size": 565,
-			"file_write_time": 1357422077000000,
-			"settings":
-			{
-				"buffer_size": 617,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "practicum3/script/barchart.js",
-			"settings":
-			{
-				"buffer_size": 2542,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "practicum3/script/barcharts.js",
-			"settings":
-			{
-				"buffer_size": 232,
+				"buffer_size": 1898,
 				"line_ending": "Unix"
 			}
 		}
@@ -542,7 +524,15 @@
 	},
 	"file_history":
 	[
+		"/home/tux/development/datavis3/practicum3/script/barcharts.js",
+		"/home/tux/development/datavis3/practicum3/script/barchart.js",
+		"/home/tux/development/datavis3/practicum3/script/azimuthal.js",
+		"/home/tux/development/datavis3/practicum3/script/map.js",
 		"/home/tux/development/datavis3/practicum3/script/globals.js",
+		"/home/tux/development/datavis3/practicum3/style.css2",
+		"/home/tux/development/datavis3/practicum3/style.css",
+		"/home/tux/development/datavis3/practicum3/index.html",
+		"/home/tux/development/datavis3/practicum3/script/graph.js",
 		"/home/tux/development/DRONE PROJECT/FGI.cpp",
 		"/home/tux/development/DRONE PROJECT/UAVP.h",
 		"/home/tux/development/DRONE PROJECT/UTIL.h",
@@ -593,6 +583,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"||",
+			" && ",
+			"&&",
+			"old_pre_selection_color",
+			"oldcolor",
+			"life_expectancy_data ",
 			"data",
 			"d",
 			"var d",
@@ -713,11 +709,67 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
+					"file": "practicum3/script/azimuthal.js",
+					"settings":
+					{
+						"buffer_size": 4952,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3425,
+								3425
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1470.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "practicum3/script/map.js",
+					"settings":
+					{
+						"buffer_size": 5564,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1030,
+								1030
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 255.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "practicum3/index.html",
 					"settings":
 					{
@@ -728,8 +780,8 @@
 						"selection":
 						[
 							[
-								858,
-								858
+								802,
+								802
 							]
 						],
 						"settings":
@@ -743,301 +795,27 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "practicum3/script/azimuthal.js",
-					"settings":
-					{
-						"buffer_size": 3560,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2020,
-								2020
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 708.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "practicum3/script/map.js",
-					"settings":
-					{
-						"buffer_size": 3463,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1271,
-								1271
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 421.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "practicum3/style.css",
-					"settings":
-					{
-						"buffer_size": 1558,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								153,
-								153
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1170.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "practicum3/style.css2",
-					"settings":
-					{
-						"buffer_size": 1599,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "practicum3/script/globals.js",
-					"settings":
-					{
-						"buffer_size": 1553,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								662,
-								662
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "practicum3/script/graph.js",
-					"settings":
-					{
-						"buffer_size": 617,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								615,
-								615
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 3,
+			"selected": 0,
 			"sheets":
 			[
 				{
-					"buffer": 1,
-					"file": "practicum3/script/azimuthal.js",
-					"settings":
-					{
-						"buffer_size": 3560,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								347,
-								347
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "practicum3/script/barchart.js",
-					"settings":
-					{
-						"buffer_size": 2542,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								580,
-								580
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "practicum3/script/barcharts.js",
-					"settings":
-					{
-						"buffer_size": 232,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								231,
-								231
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "practicum3/script/map.js",
-					"settings":
-					{
-						"buffer_size": 3463,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1068,
-								1068
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
+					"buffer": 3,
 					"file": "practicum3/script/globals.js",
 					"settings":
 					{
-						"buffer_size": 1553,
+						"buffer_size": 1898,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								308,
-								308
+								749,
+								749
 							]
 						],
 						"settings":
@@ -1046,6 +824,62 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "practicum3/script/map.js",
+					"settings":
+					{
+						"buffer_size": 5564,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								370,
+								370
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 0,
+					"file": "practicum3/script/azimuthal.js",
+					"settings":
+					{
+						"buffer_size": 4952,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3274,
+								3274
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1326.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1081,7 +915,7 @@
 		"cols":
 		[
 			0.0,
-			0.624375,
+			0.54375,
 			1.0
 		],
 		"rows":
@@ -1110,12 +944,44 @@
 		"selected_items":
 		[
 			[
+				"glob",
+				"practicum3/script/globals.js"
+			],
+			[
+				"azim",
+				"practicum3/script/azimuthal.js"
+			],
+			[
+				"inde",
+				"practicum3/index.html"
+			],
+			[
+				"azi",
+				"practicum3/script/azimuthal.js"
+			],
+			[
 				"map",
 				"practicum3/script/map.js"
 			],
 			[
-				"glob",
+				"globa",
 				"practicum3/script/globals.js"
+			],
+			[
+				"glb",
+				"practicum3/script/globals.js"
+			],
+			[
+				"gra",
+				"practicum3/script/graph.js"
+			],
+			[
+				"gl",
+				"practicum3/script/globals.js"
+			],
+			[
+				"grp",
+				"practicum3/script/graph.js"
 			],
 			[
 				"ma",
@@ -1130,28 +996,12 @@
 				"practicum3/script/graph.js"
 			],
 			[
-				"azi",
-				"practicum3/script/azimuthal.js"
-			],
-			[
-				"gl",
-				"practicum3/script/globals.js"
-			],
-			[
-				"globa",
-				"practicum3/script/globals.js"
-			],
-			[
 				"css",
 				"practicum3/style.css2"
 			],
 			[
 				"az",
 				"practicum3/script/azimuthal.js"
-			],
-			[
-				"inde",
-				"practicum3/index.html"
 			],
 			[
 				"index",
@@ -1176,10 +1026,6 @@
 			[
 				"barchar",
 				"practicum3/script/barchart.js"
-			],
-			[
-				"azim",
-				"practicum3/script/azimuthal.js"
 			],
 			[
 				"",
@@ -1433,6 +1279,10 @@
 		"height": 500.0,
 		"selected_items":
 		[
+			[
+				"drone",
+				"/home/tux/development/DRONE PROJECT/project.sublime-project"
+			]
 		],
 		"width": 380.0
 	},

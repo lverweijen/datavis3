@@ -63,18 +63,19 @@ function Azimuthal(id, projection, mode) {
         {
             $(i).attr("map",function(){
                 var value = data[$(i).attr("n")];
-                var color = gradient(0.35,0,1,min,max,value);
-                return "fill: " + color + ";stroke: rgb(0,0,0)";
+                // var color = gradient(0.35,0,1,min,max,value);
+                return colors.gradient(0.35,0,1,min,max,value);
+                // return "fill: " + color + ";stroke: rgb(0,0,0)";
             });
             $(i).attr("style",$(i).attr("map"));
         });
 
         if(selection_1 != undefined)
-            selection_1.attr("style","fill:rgb(256,0,0);stroke:rgb(0,0,0)");
+            selection_1.attr("style",colors.country_selected1());
         if(selection_2 != undefined)
-            selection_2.attr("style","fill:rgb(256,0,256);stroke:rgb(0,0,0)");
+            selection_2.attr("style",colors.country_selected2());
         if(selection_3 != undefined)
-            selection_3.attr("style","fill:rgb(256,256,0);stroke:rgb(0,0,0)");
+            selection_3.attr("style",colors.country_selected3());
     }
 
     function setSelection(d)
@@ -83,7 +84,7 @@ function Azimuthal(id, projection, mode) {
 
         //NOTE: Warom werkt deze if statement niet?
         if(selection != selection_1 && selection != selection_2 && selection != selection_3)
-        {
+        {  
             if(selection_3 != undefined)
             {
                 old = selection_3;
@@ -97,11 +98,11 @@ function Azimuthal(id, projection, mode) {
                 selection_1 = selection;
 
                 if(selection_1 != undefined)
-                    selection_1.attr("old","fill:rgb(256,0,0);stroke:rgb(0,0,0)");
+                    selection_1.attr("old",colors.country_selected1());
                 if(selection_2 != undefined)
-                    selection_2.attr("style","fill:rgb(256,0,256);stroke:rgb(0,0,0)");
+                    selection_2.attr("style",colors.country_selected2());
                 if(selection_3 != undefined)
-                    selection_3.attr("style","fill:rgb(256,256,0);stroke:rgb(0,0,0)");
+                    selection_3.attr("style",colors.country_selected3());
 
                 //console.log(barcharts);
                 barcharts.selectCountry(selection_1.attr("n"));
@@ -115,7 +116,7 @@ function Azimuthal(id, projection, mode) {
         //Set Color
         var selection = d3.select(this);
         selection.attr("old",selection.attr("style"));
-        selection.attr("style","fill:rgb(200,200,200);stroke:rgb(0,0,0)");
+        selection.attr("style",colors.country_hover());
     }
 
     function deselectLand()

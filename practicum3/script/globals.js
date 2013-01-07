@@ -8,6 +8,7 @@ var selection_2				= null;
 var selection_3				= null;
 
 //GLOBAL OBJECTS
+var colors = new Colors();
 var map;
 var azimuthal;
 var barcharts;
