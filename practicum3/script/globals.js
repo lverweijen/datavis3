@@ -30,8 +30,8 @@ $(document).ready(function(){
         azimuthal 	= new Azimuthal("#globe", 160, "ortographic");
         barcharts 	= new Barcharts("#barcharts");
         graph 	        = new Graph("#graph");    
+        calcQOL();
     });
-    calcQOL();
 });
 
 function setSelection(country) {
@@ -41,7 +41,7 @@ function setSelection(country) {
 function calcQOL()
 {
 	console.log("TTTRAAACCCCEEE");
-	console.log(window.	data);
+	console.log(window.data);
 	var a = data["CO2 emissions (metric tons per capita)"];
 	var b = data["Death rate, crude (per 1,000 people)"];
 	var c = data["GDP per capita (current US$)"];
