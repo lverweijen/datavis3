@@ -69,6 +69,7 @@ function calcQOL()
 	 container[country]=collection;
 	}
 	quality_of_life=container;
+        graph.updateCountries();
 
 }
 
@@ -89,7 +90,6 @@ function updateSlider(value)
 
     map.loadMap(output);
     azimuthal.loadMap(output);
-    graph.updateCountries();
 };
 
 function computeQOL()
