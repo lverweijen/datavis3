@@ -155,7 +155,8 @@ function Barchart(id, indicator, data) {
         rect.transition()
             .delay(function(d, i) { return i * 10; })
             .attr("y", function(d) { return y(d.y0 + d.y); })
-            .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); });
+            .attr("height", function(d) { return Math.max(y(d.y0) - y(d.y0 + d.y), 0); });
+            //.attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); });
 
         svg.append("g")
             .attr("class", "x axis")
