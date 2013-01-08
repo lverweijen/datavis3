@@ -65,110 +65,138 @@ function MEAN(a)
 
 function init()
 {
-	var a = window.data["CO2 emissions (metric tons per capita)"];
-	var b = window.data["Death rate, crude (per 1,000 people)"];
-	var c = window.data["GDP per capita (current US$)"];
-	var d = window.data["GDP per capita growth (annual %)"];
-	var e = window.data["Life expectancy at birth, total (years)"];
-	var f = window.data["Mortality rate, infant (per 1,000 live births)"];
-	var g = window.data["Unemployment, total (% of total labor force)"];
+        var means = {};
+        for(var indicator in window.data)
+            means[indicator] = MEAN(window.data[indicator]);
 
+        console.log(means);
 
-	var amean=MEAN(a);
-	var bmean=MEAN(b);
-	var cmean=MEAN(c);
-	var dmean=MEAN(d);
-	var emean=MEAN(e);
-	var fmean=MEAN(f);
-	var gmean=MEAN(g);	
+        for(var indicator in window.data) {
+            var a = window.data[indicator];
+            var countries = Object.keys(a);
 
+            countries.forEach(function(country) {
+                var cc = means[indicator];
 
-	var countries = Object.keys(a);
-	for(var i=0;i<countries.length;i++)
-	{
-		var ac=amean;
-		var bc=bmean;
-		var cc=cmean;
-		var dc=dmean;
-		var ec=emean;
-		var fc=fmean;
-		var gc=gmean;	
+                d3.range(1960, 2012).forEach(function(y) {
+                    if(a[country][y]=="")
+                        a[country][y]=cc;
+                    else
+                        cc=a[country][y];
+                });
 
-		var country = countries[i];
-		for(y=1960;y<2012;y++)
-		{
+            });
 
-			if(a[country][y]=="")
-				a[country][y]=ac;
-			else
-				ac=a[country][y];
+            filtered_data.push(a);
+            filtered_data_max.push(MAX(a));
+        }
 
-			if(b[country][y]=="")
-				b[country][y]=bc;
-			else
-				bc=b[country][y];
+	//var a = window.data["CO2 emissions (metric tons per capita)"];
+	//var b = window.data["Death rate, crude (per 1,000 people)"];
+	//var c = window.data["GDP per capita (current US$)"];
+	//var d = window.data["GDP per capita growth (annual %)"];
+	//var e = window.data["Life expectancy at birth, total (years)"];
+	//var f = window.data["Mortality rate, infant (per 1,000 live births)"];
+	//var g = window.data["Unemployment, total (% of total labor force)"];
+
+	//var amean=MEAN(a);
+	//var bmean=MEAN(b);
+	//var cmean=MEAN(c);
+	//var dmean=MEAN(d);
+	//var emean=MEAN(e);
+	//var fmean=MEAN(f);
+	//var gmean=MEAN(g);	
+
+	//var countries = Object.keys(a);
+	//for(var i=0;i<countries.length;i++)
+	//{
+		//var ac=amean;
+		//var bc=bmean;
+		//var cc=cmean;
+		//var dc=dmean;
+		//var ec=emean;
+		//var fc=fmean;
+		//var gc=gmean;	
+
+		//var country = countries[i];
+		//for(y=1960;y<2012;y++)
+		//{
+
+			//if(a[country][y]=="")
+				//a[country][y]=ac;
+			//else
+				//ac=a[country][y];
+
+			//if(b[country][y]=="")
+				//b[country][y]=bc;
+			//else
+				//bc=b[country][y];
 			
-			if(c[country][y]=="")
-				c[country][y]=cc;
-			else
-				cc=c[country][y];
+			//if(c[country][y]=="")
+				//c[country][y]=cc;
+			//else
+				//cc=c[country][y];
 			
-			if(d[country][y]=="")
-				d[country][y]=dc;
-			else
-				dc=d[country][y];
+			//if(d[country][y]=="")
+				//d[country][y]=dc;
+			//else
+				//dc=d[country][y];
 			
-			if(e[country][y]=="")
-				e[country][y]=ec;
-			else
-				ec=e[country][y];
+			//if(e[country][y]=="")
+				//e[country][y]=ec;
+			//else
+				//ec=e[country][y];
 			
-			if(f[country][y]=="")
-				f[country][y]=fc;
-			else
-				fc=f[country][y];
+			//if(f[country][y]=="")
+				//f[country][y]=fc;
+			//else
+				//fc=f[country][y];
 			
-			if(g[country][y]=="")
-				g[country][y]=gc;
-			else
-				gc=g[country][y];
+			//if(g[country][y]=="")
+				//g[country][y]=gc;
+			//else
+				//gc=g[country][y];
 
-		}
-	}
+		//}
+	//}
 
-		var amax = MAX(a);
-		var bmax = MAX(b);
-		var cmax = MAX(c);
-		var dmax = MAX(d);
-		var emax = MAX(e);
-		var fmax = MAX(f);
-		var gmax = MAX(g);
+		//var amax = MAX(a);
+		//var bmax = MAX(b);
+		//var cmax = MAX(c);
+		//var dmax = MAX(d);
+		//var emax = MAX(e);
+		//var fmax = MAX(f);
+		//var gmax = MAX(g);
 
-        filtered_data = [a,b,c,d,e,f,g];
-        filtered_data_max = [amax,bmax,cmax,dmax,emax,fmax,gmax];
+        //filtered_data = [a,b,c,d,e,f,g];
+        //filtered_data_max = [amax,bmax,cmax,dmax,emax,fmax,gmax];
 }
 
 function calcQOL()
 {
-	console.log("UPDATE");
+    console.log("UPDATE");
     var countries = Object.keys(filtered_data[0]);
-	var container = {};
+    var container = {};
 
+    console.log(filtered_data);
+    console.log(filtered_data_max);
 
-	for(var i=0;i<countries.length;i++)
-	{
-		var country = countries[i];
-		var collection = [];
-	 	for(year=1960;year<2012;year++)
-         {
+    for(var i=0;i<countries.length;i++)
+    {
+        var country = countries[i];
+        var collection = {};
+        for(year=1960;year<2012;year++)
+        {
             collection[year]=0;
             for(var j=0;j<filtered_data.length;j++)
-                	collection[year]+=filtered_data[j][country][year]/filtered_data_max[j][year-1960]*coeficients[j];
+            {
+                collection[year]+=filtered_data[j][country][year]/filtered_data_max[j][year-1960]; //*coeficients[j];
+            }
             collection[year]/=filtered_data.length;
-         }
-         container[country]=collection;
-     }
-     quality_of_life=container;
+        }
+        container[country]=collection;
+    }
+    quality_of_life=container;
 }
 
 
