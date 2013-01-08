@@ -26,7 +26,7 @@ function Graph(id) {
     // Vul hier je eigen formule in.
     // geval afhandelen dat country niet bestaat
     var formula = function(country) {
-        var countryData = quality_of_life[country];//window.data["Life expectancy at birth, total (years)"][country];
+        var countryData = window.quality_of_life[country];
 
         var paired = [];
         var value = 0;
@@ -45,6 +45,7 @@ function Graph(id) {
 
     //function updateCountries() {
     this.updateCountries = function() {
+        console.log("okay" );
         console.log(selectedCountries );
         var countries = selectedCountries;
 
@@ -189,7 +190,7 @@ function Graph(id) {
     //updateCountries(["United States", "United Kingdom", "China"]);
     //this.selectCountry("United States");
     //this.selectCountry("Italy");
-    this.updateCountries();
+    //this.updateCountries();
 
     //var table = d3.select("#sliders");
 

@@ -15,12 +15,6 @@ function Map(id) {
         .attr("width", width)
         .attr("height", height);
 
-    // svg.append("rect")
-    //     .attr("class", "background")
-    //     .attr("width", width)
-    //     .attr("height", height)
-    //     .on("click", click);
-
     var g = svg.append("g")
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
       .append("g")
@@ -36,7 +30,10 @@ function Map(id) {
         .attr("map",function(){
           return colors.country_clear();
         })
-        .attr("style","map")    
+        .attr("style",function(d,i)
+        {
+            return colors.country_clear();
+        })  
           .attr("d", path)
           .on("click", click)
           .on("mouseover", selectLand)
@@ -70,11 +67,11 @@ function Map(id) {
 
         list.forEach(function(i)
         {
-          if(selection_1 != undefined && $(i).attr("n")==selection_1.attr("n"))
+          if(selected_country[0] != undefined && $(i).attr("n")==selected_country[0].attr("n"))
             $(i).attr("style",colors.country_selected1());
-          if(selection_2 != undefined && $(i).attr("n")==selection_2.attr("n"))
+          if(selected_country[1] != undefined && $(i).attr("n")==selected_country[1].attr("n"))
             $(i).attr("style",colors.country_selected2());
-          if(selection_3 != undefined && $(i).attr("n")==selection_3.attr("n"))
+          if(selected_country[2] != undefined && $(i).attr("n")==selected_country[2].attr("n"))
             $(i).attr("style",colors.country_selected3());
         });
     }
@@ -118,11 +115,11 @@ function Map(id) {
           var list = g.selectAll("path")[0];
           list.forEach(function(i)
           {
-            if(selection_1 != undefined && $(i).attr("n")==selection_1.attr("n"))
+            if(selected_country[0] != undefined && $(i).attr("n")==selected_country[0].attr("n"))
               $(i).attr("style",colors.country_selected1());
-            if(selection_2 != undefined && $(i).attr("n")==selection_2.attr("n"))
+            if(selected_country[1] != undefined && $(i).attr("n")==selected_country[1].attr("n"))
               $(i).attr("style",colors.country_selected2());
-            if(selection_3 != undefined && $(i).attr("n")==selection_3.attr("n"))
+            if(selected_country[2] != undefined && $(i).attr("n")==selected_country[2].attr("n"))
               $(i).attr("style",colors.country_selected3());
           });
     }

@@ -76,12 +76,12 @@ function Azimuthal(id, projection, mode) {
             $(i).attr("style",$(i).attr("map"));
         });
 
-        if(selection_1 != undefined)
-            selection_1.attr("style",colors.country_selected1());
-        if(selection_2 != undefined)
-            selection_2.attr("style",colors.country_selected2());
-        if(selection_3 != undefined)
-            selection_3.attr("style",colors.country_selected3());
+        if(selected_country[0] != undefined)
+            selected_country[0].attr("style",colors.country_selected1());
+        if(selected_country[1] != undefined)
+            selected_country[1].attr("style",colors.country_selected2());
+        if(selected_country[2] != undefined)
+            selected_country[2].attr("style",colors.country_selected3());
     }
 
     function setSelection(d)
@@ -90,33 +90,39 @@ function Azimuthal(id, projection, mode) {
 
         var selection = d3.select(this);
 
-        //NOTE: Warom werkt deze if statement niet?
-        if(selection != selection_1 && selection != selection_2 && selection != selection_3)
-        {  
-            if(selection_3 != undefined)
+        
+
+        var c = 3;
+        for(var i=0; i<3; i++)
+            if(selected_country[i]!=undefined)
+                if($(selected_country[i][0]).attr("n")==$(selection[0]).attr("n"))
+                    c--;
+        if(c==3)
+        {
+            if(selected_country[2] != undefined)
             {
-                old = selection_3;
-                selection_3.attr("style",selection_3.attr("map"));
+                old = selected_country[2];
+                selected_country[2].attr("style",selected_country[2].attr("map"));
                 barcharts.deselectCountry(old.attr("n"));
                 graph.deselectCountry(old.attr("n"));
             }
 
-                selection_3 = selection_2;
-                selection_2 = selection_1;
-                selection_1 = selection;
+                selected_country[2] = selected_country[1];
+                selected_country[1] = selected_country[0];
+                selected_country[0] = selection;
 
-                if(selection_1 != undefined)
-                    selection_1.attr("old",colors.country_selected1());
-                if(selection_2 != undefined)
-                    selection_2.attr("style",colors.country_selected2());
-                if(selection_3 != undefined)
-                    selection_3.attr("style",colors.country_selected3());
+                if(selected_country[0] != undefined)
+                    selected_country[0].attr("old",colors.country_selected1());
+                if(selected_country[1] != undefined)
+                    selected_country[1].attr("style",colors.country_selected2());
+                if(selected_country[2] != undefined)
+                    selected_country[2].attr("style",colors.country_selected3());
 
-                //console.log(barcharts);
-                barcharts.selectCountry(selection_1.attr("n"));
+                barcharts.selectCountry(selected_country[0].attr("n"));
                 barcharts.updateCountries();
-                graph.selectCountry(selection_1.attr("n"));
+                graph.selectCountry(selected_country[0].attr("n"));
         }
+
         map.zoom(d);        
     }
 
