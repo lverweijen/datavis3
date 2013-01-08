@@ -1,9 +1,9 @@
 //GLOBAL VARIABLES
-var year 			= 2005;
+var year_now				= 1960;
 var life_expectancy 		= [];
 var life_expectancy_data	= [[]];
 var selected_country 		= [undefined,undefined,undefined];
-var coeficients			=["1","1","1","1","1","1","1"];
+var coeficients			=["0","0","0","0","0","0","0"];
 var quality_of_life		= {};
 var filtered_data_max = [];
 var filtered_data = [];
@@ -43,12 +43,14 @@ function setSelection(country) {
 
 function MAX(a)
 {
-    var countries = Object.keys(a); 
-    var g = d3.max(countries, function(country) {  
-        return d3.max(d3.range(1960, 2012),
-            function(k){return +a[country][k]});  
-    });
-    return g;
+	var countries = Object.keys(a); 
+	return d3.range(1960, 2012).map(function(year) 
+			{
+			return d3.max(countries,function(country)
+				{
+					return +a[country][year];
+				});  
+			});
 }
 
 function MEAN(a)
@@ -71,13 +73,6 @@ function init()
 	var f = window.data["Mortality rate, infant (per 1,000 live births)"];
 	var g = window.data["Unemployment, total (% of total labor force)"];
 
-	var amax = MAX(a);
-	var bmax = MAX(b);
-	var cmax = MAX(c);
-	var dmax = MAX(d);
-	var emax = MAX(e);
-	var fmax = MAX(f);
-	var gmax = MAX(g);
 
 	var amean=MEAN(a);
 	var bmean=MEAN(b);
@@ -141,7 +136,13 @@ function init()
 		}
 	}
 
-
+		var amax = MAX(a);
+		var bmax = MAX(b);
+		var cmax = MAX(c);
+		var dmax = MAX(d);
+		var emax = MAX(e);
+		var fmax = MAX(f);
+		var gmax = MAX(g);
 
         filtered_data = [a,b,c,d,e,f,g];
         filtered_data_max = [amax,bmax,cmax,dmax,emax,fmax,gmax];
@@ -161,15 +162,9 @@ function calcQOL()
 	 	for(year=1960;year<2012;year++)
          {
             collection[year]=0;
-            for(var j=0;j<7;j++)
-            {
-             	if(j!=0&&j!=1&&j!=5&&j!=6)
-                	collection[year]+=filtered_data[j][country][year]*coeficients[j]/filtered_data_max[j];
-             	else
-            	  	collection[year]+=1-filtered_data[j][country][year]*coeficients[j]/filtered_data_max[j];
-            	collection[year]/=7;
-            }
-
+            for(var j=0;j<filtered_data.length;j++)
+                	collection[year]+=filtered_data[j][country][year]/filtered_data_max[j][year-1960]*coeficients[j];
+            collection[year]/=filtered_data.length;
          }
          container[country]=collection;
      }
@@ -182,14 +177,14 @@ function updateSlider(value)
 	calcQOL();
 
 	var yearDisp = $('#yearDisp');
-	year = value;
-	yearDisp.html(""+ year);
+	year_now = value;
+	yearDisp.html(""+ year_now);
 
 	var output = {};
 	var countries = Object.keys(quality_of_life);
 
 	for(var i=0;i<countries.length;i++)
-		output[countries[i]] = quality_of_life[countries[i]][year];
+		output[countries[i]] = quality_of_life[countries[i]][year_now];
 
     map.loadMap(output);
     azimuthal.loadMap(output);
@@ -200,19 +195,21 @@ function updateSlider1(value)
 	coeficients[0]=value/10;
 	calcQOL();
 	graph.updateCountries();
+	updateSlider(year_now);
 }
 function updateSlider2(value)
 {
 	coeficients[1]=value/10;
 	calcQOL();
 	graph.updateCountries();
-
+	updateSlider(year_now);
 }
 function updateSlider3(value)
 {
 	coeficients[2]=value/10;
 	calcQOL();
 	graph.updateCountries();
+	updateSlider(year_now);
 
 }
 function updateSlider4(value)
@@ -220,6 +217,7 @@ function updateSlider4(value)
 	coeficients[3]=value/10;
 	calcQOL();
 	graph.updateCountries();
+	updateSlider(year_now);
 
 }
 function updateSlider5(value)
@@ -227,6 +225,7 @@ function updateSlider5(value)
 	coeficients[4]=value/10;
 	calcQOL();
 	graph.updateCountries();
+	updateSlider(year_now);
 
 }
 function updateSlider6(value)
@@ -234,6 +233,7 @@ function updateSlider6(value)
 	coeficients[5]=value/10;
 	calcQOL();
 	graph.updateCountries();
+	updateSlider(year_now);
 
 }
 function updateSlider7(value)
@@ -241,10 +241,9 @@ function updateSlider7(value)
 	coeficients[6]=value/10;
 	calcQOL();
 	graph.updateCountries();
+	updateSlider(year_now);
 
 }
-
-updateSlider(1998);
 
 function gradient(red, green, blue, min, max, data)
 {
