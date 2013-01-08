@@ -48,22 +48,25 @@ function calcQOL()
 	var f = window.data["Mortality rate, infant (per 1,000 live births)"];
 	var g = window.data["Unemployment, total (% of total labor force)"];
 
+
 	var countries = Object.keys(a);
 	var container = {};
+
+
 	for(var i=0;i<countries.length;i++)
 	{
 		var country = countries[i];
 		var collection = {};
-	 for(year=1960;year<2012;year++)
+	 for(var year=1960;year<2012;year++)
 	 {
 	 	collection[year]= 	
-	 		a[country][""+year]*coeficients[0]/10+
+	 		(a[country][""+year]*coeficients[0]/10+
 	 		b[country][""+year]*coeficients[1]/10+
 	 		c[country][""+year]*coeficients[2]/10+
 	 		d[country][""+year]*coeficients[3]/10+
 			e[country][""+year]*coeficients[4]/10+
 			f[country][""+year]*coeficients[5]/10+
-			g[country][""+year]*coeficients[6]/10;
+			g[country][""+year]*coeficients[6]/10)/7;
 	 }
 	 container[country]=collection;
 	}
@@ -136,7 +139,7 @@ function updateSlider7(value)
 	coeficients[6]=value;
 	calcQOL();
 	graph.updateCountries();
-	
+
 }
 
 updateSlider(1998);

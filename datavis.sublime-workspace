@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"coun",
+				"country"
+			],
+			[
+				"cou",
+				"country"
+			],
+			[
+				"co",
+				"console"
+			],
+			[
+				"c",
+				"countries"
+			],
+			[
+				"yea",
+				"year"
+			],
+			[
 				"base",
 				"base_stroke"
 			],
@@ -331,6 +351,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "practicum3/script/graph.js",
+			"settings":
+			{
+				"buffer_size": 6330,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "practicum3/script/globals.js",
+			"settings":
+			{
+				"buffer_size": 3455,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/User/myC++.sublime-build",
 	"command_palette":
@@ -528,14 +564,14 @@
 	},
 	"file_history":
 	[
+		"/home/tux/development/datavis3/practicum3/script/globals.js",
+		"/home/tux/development/datavis3/practicum3/script/graph.js",
 		"/home/tux/development/datavis3/practicum3/index.html",
 		"/home/tux/development/datavis3/practicum3/script/map.js",
 		"/home/tux/development/datavis3/practicum3/script/azimuthal.js",
-		"/home/tux/development/datavis3/practicum3/script/globals.js",
 		"/home/tux/development/datavis3/practicum3/script/colors.js",
 		"/home/tux/development/datavis3/practicum3/script/barcharts.js",
 		"/home/tux/development/datavis3/practicum3/style.css",
-		"/home/tux/development/datavis3/practicum3/script/graph.js",
 		"/home/tux/development/datavis3/practicum3/script/barchart.js",
 		"/home/tux/development/datavis3/practicum3/script/colors",
 		"/home/tux/development/datavis3/practicum3/style.css2",
@@ -589,6 +625,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"computeQOL",
+			"data",
+			"window.",
+			"value",
+			"life_expectancy",
+			"data",
 			"40",
 			"1",
 			"updateSlide",
@@ -710,13 +752,7 @@
 			"ori_a",
 			"ori",
 			"orientation",
-			"float",
-			"1",
-			"0",
-			"1",
-			"0",
-			"float",
-			"1"
+			"float"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -735,13 +771,70 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "practicum3/script/graph.js",
+					"settings":
+					{
+						"buffer_size": 6330,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1411,
+								1411
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 663.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		},
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 1,
+					"file": "practicum3/script/globals.js",
+					"settings":
+					{
+						"buffer_size": 3455,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1505,
+								1505
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 597.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -802,6 +895,22 @@
 		"selected_items":
 		[
 			[
+				"grap",
+				"practicum3/script/graph.js"
+			],
+			[
+				"glob",
+				"practicum3/script/globals.js"
+			],
+			[
+				"graph",
+				"practicum3/script/graph.js"
+			],
+			[
+				"glo",
+				"practicum3/script/globals.js"
+			],
+			[
 				"azi",
 				"practicum3/script/azimuthal.js"
 			],
@@ -816,10 +925,6 @@
 			[
 				"color",
 				"practicum3/script/colors.js"
-			],
-			[
-				"glob",
-				"practicum3/script/globals.js"
 			],
 			[
 				"css",
@@ -842,10 +947,6 @@
 				"practicum3/script/barchart.js"
 			],
 			[
-				"glo",
-				"practicum3/script/globals.js"
-			],
-			[
 				"coo",
 				"practicum3/script/colors.js"
 			],
@@ -856,10 +957,6 @@
 			[
 				"barc",
 				"practicum3/script/barchart.js"
-			],
-			[
-				"grap",
-				"practicum3/script/graph.js"
 			],
 			[
 				"a",
