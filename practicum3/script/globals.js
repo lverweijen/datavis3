@@ -31,6 +31,7 @@ $(document).ready(function(){
         barcharts 	= new Barcharts("#barcharts");
         graph 	        = new Graph("#graph");    
         calcQOL();
+        graph.updateCountries();
     });
 });
 
@@ -88,6 +89,7 @@ function updateSlider(value)
 
     map.loadMap(output);
     azimuthal.loadMap(output);
+    graph.updateCountries();
 };
 
 function computeQOL()

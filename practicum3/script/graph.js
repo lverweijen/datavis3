@@ -45,6 +45,7 @@ function Graph(id) {
 
     //function updateCountries() {
     this.updateCountries = function() {
+        console.log("okay" );
         console.log(selectedCountries );
         var countries = selectedCountries;
 
@@ -189,7 +190,7 @@ function Graph(id) {
     //updateCountries(["United States", "United Kingdom", "China"]);
     //this.selectCountry("United States");
     //this.selectCountry("Italy");
-    this.updateCountries();
+    //this.updateCountries();
 
     //var table = d3.select("#sliders");
 
