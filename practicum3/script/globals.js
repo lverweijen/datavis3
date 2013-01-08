@@ -1,13 +1,16 @@
 //GLOBAL VARIABLES
-var year 					= 2005;
+var year 			= 2005;
 var life_expectancy 		= [];
 var life_expectancy_data	= [[]];
 var selected_country 		= "Netherlands";
-var selection_1				= null;
-var selection_2				= null;
-var selection_3				= null;
-var coeficients				=["10","10","10","10","10","10","10"];
-var quality_of_life			= {};
+var selection_1			= null;
+var selection_2			= null;
+var selection_3			= null;
+var coeficients			=["1","-1","1","1","1","-1","-1"];
+var quality_of_life		= {};
+var filtered_data_max = [];
+var filtered_data = [];
+
 
 //GLOBAL OBJECTS
 var colors = new Colors();
@@ -25,6 +28,8 @@ $(document).ready(function(){
 
         .rollup(function(v) { return v[0]; })
         .map(data);
+    
+        init();
 
         map 		= new Map("#map");
         azimuthal 	= new Azimuthal("#globe", 160, "ortographic");
@@ -39,7 +44,17 @@ function setSelection(country) {
 	
 }
 
-function calcQOL()
+function MAX(a)
+{
+    var countries = Object.keys(a); 
+    var g = d3.max(countries, function(country) {  
+        return d3.max(d3.range(1960, 2012),
+            function(k){return +a[country][k]});  
+    });
+    return g;
+}
+
+function init()
 {
 	var a = window.data["CO2 emissions (metric tons per capita)"];
 	var b = window.data["Death rate, crude (per 1,000 people)"];
@@ -49,28 +64,35 @@ function calcQOL()
 	var f = window.data["Mortality rate, infant (per 1,000 live births)"];
 	var g = window.data["Unemployment, total (% of total labor force)"];
 
-	var countries = Object.keys(a);
+        var amax = MAX(a);
+        var bmax = MAX(b);
+        var cmax = MAX(c);
+        var dmax = MAX(d);
+        var emax = MAX(e);
+        var fmax = MAX(f);
+        var gmax = MAX(g);
+
+        filtered_data = [a,b,c,d,e,f,g];
+        filtered_data_max = [amax,bmax,cmax,dmax,emax,fmax,gmax];
+}
+
+function calcQOL()
+{
+        var countries = Object.keys(filtered_data[0]);
 	var container = {};
 	for(var i=0;i<countries.length;i++)
 	{
 		var country = countries[i];
-		var collection = {};
+		var collection = [];
 	 for(year=1960;year<2012;year++)
-	 {
-	 	collection[year]= 	
-	 		a[country][""+year]*coeficients[0]/10+
-	 		b[country][""+year]*coeficients[1]/10+
-	 		c[country][""+year]*coeficients[2]/10+
-	 		d[country][""+year]*coeficients[3]/10+
-			e[country][""+year]*coeficients[4]/10+
-			f[country][""+year]*coeficients[5]/10+
-			g[country][""+year]*coeficients[6]/10;
-	 }
+         {
+            collection[year]=0;
+             for(var j=0;j<7;j++)
+                 collection[year]+=filtered_data[j][country][year]*coeficients[j]/filtered_data_max[j];
+         }
 	 container[country]=collection;
 	}
 	quality_of_life=container;
-        graph.updateCountries();
-
 }
 
 
@@ -94,48 +116,48 @@ function updateSlider(value)
 
 function updateSlider1(value)
 {
-	coeficients[0]=value;
+	coeficients[0]=value/10;
 	calcQOL();
 	graph.updateCountries();
 }
 function updateSlider2(value)
 {
-	coeficients[1]=value;
+	coeficients[1]=-value/10;
 	calcQOL();
 	graph.updateCountries();
 
 }
 function updateSlider3(value)
 {
-	coeficients[2]=value;
+	coeficients[2]=value/10;
 	calcQOL();
 	graph.updateCountries();
 
 }
 function updateSlider4(value)
 {
-	coeficients[3]=value;
+	coeficients[3]=value/10;
 	calcQOL();
 	graph.updateCountries();
 
 }
 function updateSlider5(value)
 {
-	coeficients[4]=value;
+	coeficients[4]=value/10;
 	calcQOL();
 	graph.updateCountries();
 
 }
 function updateSlider6(value)
 {
-	coeficients[5]=value;
+	coeficients[5]=-value/10;
 	calcQOL();
 	graph.updateCountries();
 
 }
 function updateSlider7(value)
 {
-	coeficients[6]=value;
+	coeficients[6]=-value/10;
 	calcQOL();
 	graph.updateCountries();
 	

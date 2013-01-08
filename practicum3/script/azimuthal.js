@@ -89,9 +89,11 @@ function Azimuthal(id, projection, mode) {
 
 
         var selection = d3.select(this);
+        console.log("TRACACJAHSKFHKAJDF");
+        console.log(selection);
 
         //NOTE: Warom werkt deze if statement niet?
-        if(selection != selection_1 && selection != selection_2 && selection != selection_3)
+        if(selection[0] != selection_1[0] && selection[0] != selection_2[0] && selection[0] != selection_3[0])
         {  
             if(selection_3 != undefined)
             {
