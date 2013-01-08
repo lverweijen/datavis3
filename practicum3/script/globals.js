@@ -90,45 +90,53 @@ function updateSlider(value)
     azimuthal.loadMap(output);
 };
 
-function computeQOL()
-{
-	console.log(coeficients);
-}
-
 function updateSlider1(value)
 {
 	coeficients[0]=value;
-	computeQOL();
+	calcQOL();
+	graph.updateCountries();
 }
 function updateSlider2(value)
 {
 	coeficients[1]=value;
-	computeQOL();
+	calcQOL();
+	graph.updateCountries();
+
 }
 function updateSlider3(value)
 {
 	coeficients[2]=value;
-	computeQOL();
+	calcQOL();
+	graph.updateCountries();
+
 }
 function updateSlider4(value)
 {
 	coeficients[3]=value;
-	computeQOL();
+	calcQOL();
+	graph.updateCountries();
+
 }
 function updateSlider5(value)
 {
 	coeficients[4]=value;
-	computeQOL();
+	calcQOL();
+	graph.updateCountries();
+
 }
 function updateSlider6(value)
 {
 	coeficients[5]=value;
-	computeQOL();
+	calcQOL();
+	graph.updateCountries();
+
 }
 function updateSlider7(value)
 {
 	coeficients[6]=value;
-	computeQOL();
+	calcQOL();
+	graph.updateCountries();
+	
 }
 
 updateSlider(1998);
