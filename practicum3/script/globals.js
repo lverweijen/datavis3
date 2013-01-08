@@ -3,7 +3,7 @@ var year_now				= 1960;
 var life_expectancy 		= [];
 var life_expectancy_data	= [[]];
 var selected_country 		= [undefined,undefined,undefined];
-var coeficients			=["0","0","0","0","0","0","0"];
+var coefficients		= d3.range(13).map(function(){return "0"});
 var quality_of_life		= {};
 var filtered_data_max = [];
 var filtered_data = [];
@@ -27,6 +27,8 @@ $(document).ready(function(){
         .map(data);
     
         init();
+        createSliders();
+        //calcQOL();
 
         map 		= new Map("#map");
         azimuthal 	= new Azimuthal("#globe", 160, "ortographic");
@@ -65,18 +67,18 @@ function MEAN(a)
 
 function init()
 {
-        var means = {};
-        for(var indicator in window.data)
-            means[indicator] = MEAN(window.data[indicator]);
+        //var means = {};
+        //for(var indicator in window.data)
+            //means[indicator] = MEAN(window.data[indicator]);
 
-        console.log(means);
+        //console.log(means);
 
         for(var indicator in window.data) {
             var a = window.data[indicator];
             var countries = Object.keys(a);
 
             countries.forEach(function(country) {
-                var cc = means[indicator];
+                var cc = 0; //means[indicator];
 
                 d3.range(1960, 2012).forEach(function(y) {
                     if(a[country][y]=="")
@@ -91,85 +93,36 @@ function init()
             filtered_data_max.push(MAX(a));
         }
 
-	//var a = window.data["CO2 emissions (metric tons per capita)"];
-	//var b = window.data["Death rate, crude (per 1,000 people)"];
-	//var c = window.data["GDP per capita (current US$)"];
-	//var d = window.data["GDP per capita growth (annual %)"];
-	//var e = window.data["Life expectancy at birth, total (years)"];
-	//var f = window.data["Mortality rate, infant (per 1,000 live births)"];
-	//var g = window.data["Unemployment, total (% of total labor force)"];
+}
 
-	//var amean=MEAN(a);
-	//var bmean=MEAN(b);
-	//var cmean=MEAN(c);
-	//var dmean=MEAN(d);
-	//var emean=MEAN(e);
-	//var fmean=MEAN(f);
-	//var gmean=MEAN(g);	
+function createSliders() {
+    var table = d3.select("#sliders").append("tbody");
+    var table_id = 0;
+    for (var indicator in window.data) {
+        console.log("creating barchart for indicator");
+        //table.append("text").attr("mama", "joe");
+        //table.append("<p>hello</p>");
+        var slider = table.append("tr")
+            .append("td")
+            .text("" + indicator);
 
-	//var countries = Object.keys(a);
-	//for(var i=0;i<countries.length;i++)
-	//{
-		//var ac=amean;
-		//var bc=bmean;
-		//var cc=cmean;
-		//var dc=dmean;
-		//var ec=emean;
-		//var fc=fmean;
-		//var gc=gmean;	
+            //slider
+            //.text(indicator + "\n<br> <br/>")
 
-		//var country = countries[i];
-		//for(y=1960;y<2012;y++)
-		//{
+        slider.append("br");
 
-			//if(a[country][y]=="")
-				//a[country][y]=ac;
-			//else
-				//ac=a[country][y];
-
-			//if(b[country][y]=="")
-				//b[country][y]=bc;
-			//else
-				//bc=b[country][y];
-			
-			//if(c[country][y]=="")
-				//c[country][y]=cc;
-			//else
-				//cc=c[country][y];
-			
-			//if(d[country][y]=="")
-				//d[country][y]=dc;
-			//else
-				//dc=d[country][y];
-			
-			//if(e[country][y]=="")
-				//e[country][y]=ec;
-			//else
-				//ec=e[country][y];
-			
-			//if(f[country][y]=="")
-				//f[country][y]=fc;
-			//else
-				//fc=f[country][y];
-			
-			//if(g[country][y]=="")
-				//g[country][y]=gc;
-			//else
-				//gc=g[country][y];
-
-		//}
-	//}
-
-		//var amax = MAX(a);
-		//var bmax = MAX(b);
-		//var cmax = MAX(c);
-		//var dmax = MAX(d);
-		//var emax = MAX(e);
-		//var fmax = MAX(f);
-		//var gmax = MAX(g);
-
-        //filtered_data = [a,b,c,d,e,f,g];
-        //filtered_data_max = [amax,bmax,cmax,dmax,emax,fmax,gmax];
+        slider
+            .append("input")
+            .attr("type", "range")
+            .attr("value", "0")
+            .attr("min", "-10")
+            .attr("max", "10")
+            .attr("step", "0.05")
+            .attr("onchange", "updateCoefficientSlider(this.value, " + table_id + ")")
+            .style("width", "800px");
+        //table.append("p").text(indicator);
+        //table.append("circle");
+    }
 }
 
 function calcQOL()
@@ -190,7 +143,7 @@ function calcQOL()
             collection[year]=0;
             for(var j=0;j<filtered_data.length;j++)
             {
-                collection[year]+=filtered_data[j][country][year]/filtered_data_max[j][year-1960]; //*coeficients[j];
+                collection[year]+=filtered_data[j][country][year]/filtered_data_max[j][year-1960] * coefficients[j];
             }
             collection[year]/=filtered_data.length;
         }
@@ -218,59 +171,11 @@ function updateSlider(value)
     azimuthal.loadMap(output);
 };
 
-function updateSlider1(value)
-{
-	coeficients[0]=value/10;
-	calcQOL();
-	graph.updateCountries();
-	updateSlider(year_now);
-}
-function updateSlider2(value)
-{
-	coeficients[1]=value/10;
-	calcQOL();
-	graph.updateCountries();
-	updateSlider(year_now);
-}
-function updateSlider3(value)
-{
-	coeficients[2]=value/10;
-	calcQOL();
-	graph.updateCountries();
-	updateSlider(year_now);
-
-}
-function updateSlider4(value)
-{
-	coeficients[3]=value/10;
-	calcQOL();
-	graph.updateCountries();
-	updateSlider(year_now);
-
-}
-function updateSlider5(value)
-{
-	coeficients[4]=value/10;
-	calcQOL();
-	graph.updateCountries();
-	updateSlider(year_now);
-
-}
-function updateSlider6(value)
-{
-	coeficients[5]=value/10;
-	calcQOL();
-	graph.updateCountries();
-	updateSlider(year_now);
-
-}
-function updateSlider7(value)
-{
-	coeficients[6]=value/10;
-	calcQOL();
-	graph.updateCountries();
-	updateSlider(year_now);
-
+function updateCoefficientSlider(value, index) {
+    coefficients[index] = value;
+    calcQOL();
+    graph.updateCountries();
+    updateSlider(year_now);
 }
 
 function gradient(red, green, blue, min, max, data)
