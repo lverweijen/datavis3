@@ -40,15 +40,13 @@ function setSelection(country) {
 
 function calcQOL()
 {
-	console.log("TTTRAAACCCCEEE");
-	console.log(window.data);
-	var a = data["CO2 emissions (metric tons per capita)"];
-	var b = data["Death rate, crude (per 1,000 people)"];
-	var c = data["GDP per capita (current US$)"];
-	var d = data["GDP per capita growth (annual %)"];
-	var e = data["Life expectancy at birth, total (years)"];
-	var f = data["Mortality rate, infant (per 1,000 live births)"];
-	var g = data["Unemployment, total (% of total labor force)"];
+	var a = window.data["CO2 emissions (metric tons per capita)"];
+	var b = window.data["Death rate, crude (per 1,000 people)"];
+	var c = window.data["GDP per capita (current US$)"];
+	var d = window.data["GDP per capita growth (annual %)"];
+	var e = window.data["Life expectancy at birth, total (years)"];
+	var f = window.data["Mortality rate, infant (per 1,000 live births)"];
+	var g = window.data["Unemployment, total (% of total labor force)"];
 
 	var countries = Object.keys(a);
 	var container = {};
@@ -56,7 +54,7 @@ function calcQOL()
 	{
 		var country = countries[i];
 		var collection = {};
-	 for(year=1960;year<=2012;year++)
+	 for(year=1960;year<2012;year++)
 	 {
 	 	collection[year]= 	
 	 		a[country][""+year]*coeficients[0]/10+
@@ -70,19 +68,21 @@ function calcQOL()
 	 container[country]=collection;
 	}
 	quality_of_life=container;
+
 }
 
 
 function updateSlider(value)
 {
+	calcQOL();
+
 	var yearDisp = $('#yearDisp');
 	year = value;
 	yearDisp.html(""+ year);
 
-
-
 	var output = {};
 	var countries = Object.keys(quality_of_life);
+
 	for(var i=0;i<countries.length;i++)
 		output[countries[i]] = quality_of_life[countries[i]][year];
 
